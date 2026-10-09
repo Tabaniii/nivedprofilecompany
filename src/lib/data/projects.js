@@ -1,0 +1,58 @@
+export const projects = [
+  {
+    id: "zenith-commerce",
+    title: "Zenith Commerce",
+    subtitle: "High-Performance Headless E-Commerce Platform",
+    description:
+      "A headless commerce experience built with Next.js, featuring instantaneous page transitions, edge-cached product catalogs, dynamic faceted filtering, and optimized checkout flows.",
+    image: "/images/projects/zenith-commerce.svg",
+    tags: ["Next.js", "React", "Tailwind CSS", "Stripe API", "Edge Middleware"],
+    metrics: ["99+ Google Lighthouse score", "45% faster checkout completion", "Sub-100ms INP response"],
+    githubUrl: "https://github.com/nived/zenith-commerce",
+    liveUrl: "https://zenith-commerce-demo.vercel.app",
+    featured: true,
+    year: "2025",
+  },
+  {
+    id: "nexus-analytics",
+    title: "Nexus Analytics",
+    subtitle: "Real-Time Telemetry & Metric Dashboard",
+    description:
+      "An observability dashboard aggregating millions of real-time server events, providing interactive data visualizations, latency heatmaps, and customizable alerting thresholds.",
+    image: "/images/projects/nexus-analytics.svg",
+    tags: ["React 19", "Tailwind CSS", "WebSockets", "Data Vis", "Node.js"],
+    metrics: ["10k+ concurrent metrics streamed", "Dark mode by default", "Zero layout shift"],
+    githubUrl: "https://github.com/nived/nexus-analytics",
+    liveUrl: "https://nexus-analytics-demo.vercel.app",
+    featured: true,
+    year: "2024",
+  },
+  {
+    id: "flowstate-cms",
+    title: "FlowState Workspace",
+    subtitle: "Collaborative Markdown & Knowledge Studio",
+    description:
+      "A distraction-free writing environment and knowledge graph for engineering teams, equipped with offline syncing, keyboard-first navigation, and real-time collaborative editing.",
+    image: "/images/projects/flowstate-cms.svg",
+    tags: ["JavaScript", "Next.js", "Tailwind CSS", "Local-First", "Web Workers"],
+    metrics: ["100% offline support via IndexedDB", "Accessible WCAG AAA keyboard flows"],
+    githubUrl: "https://github.com/nived/flowstate-workspace",
+    liveUrl: "https://flowstate-workspace-demo.vercel.app",
+    featured: true,
+    year: "2024",
+  },
+  {
+    id: "aura-design-system",
+    title: "Aura Design System",
+    subtitle: "Enterprise Component System & Token Pipeline",
+    description:
+      "A cross-framework component library and token distribution system built for accessible web applications, with automatic color contrast validation and comprehensive documentation.",
+    image: "/images/projects/aura-design-system.svg",
+    tags: ["Design Systems", "Tailwind CSS", "Accessibility", "Tokens", "React"],
+    metrics: ["40+ accessible UI components", "Strict WCAG AA contrast compliance"],
+    githubUrl: "https://github.com/nived/aura-design-system",
+    liveUrl: "https://aura-design-system-demo.vercel.app",
+    featured: false,
+    year: "2023",
+  },
+];

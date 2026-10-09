@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" fill="none">
+  <defs>
+    <linearGradient id="zenith-bg" x1="0" y1="0" x2="800" y2="500" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e1b4b" />
+    </linearGradient>
+    <linearGradient id="card-grad" x1="0" y1="0" x2="300" y2="200" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.05" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" rx="16" fill="url(#zenith-bg)" />
+  <rect x="40" y="40" width="720" height="420" rx="12" fill="#1e293b" fill-opacity="0.6" stroke="#334155" stroke-width="1.5" />
+  
+  <!-- Browser topbar -->
+  <circle cx="70" cy="70" r="6" fill="#ef4444" />
+  <circle cx="92" cy="70" r="6" fill="#f59e0b" />
+  <circle cx="114" cy="70" r="6" fill="#10b981" />
+  <rect x="150" y="60" width="300" height="20" rx="6" fill="#0f172a" fill-opacity="0.8" />
+  <text x="165" y="74" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="11">store.zenith.dev/shop</text>
+  
+  <!-- Storefront UI mockup -->
+  <rect x="70" y="110" width="200" height="320" rx="8" fill="#0f172a" fill-opacity="0.7" stroke="#334155" stroke-width="1" />
+  <!-- Categories -->
+  <rect x="90" y="135" width="100" height="14" rx="4" fill="#60a5fa" fill-opacity="0.6" />
+  <rect x="90" y="170" width="130" height="10" rx="3" fill="#64748b" />
+  <rect x="90" y="195" width="110" height="10" rx="3" fill="#64748b" />
+  <rect x="90" y="220" width="140" height="10" rx="3" fill="#64748b" />
+  
+  <!-- Product Grid -->
+  <rect x="290" y="110" width="220" height="150" rx="8" fill="url(#card-grad)" stroke="#3b82f6" stroke-width="1.5" stroke-opacity="0.4" />
+  <circle cx="400" cy="165" r="30" fill="#38bdf8" fill-opacity="0.2" />
+  <rect x="310" y="220" width="120" height="12" rx="4" fill="#f8fafc" fill-opacity="0.9" />
+  <rect x="310" y="240" width="60" height="10" rx="3" fill="#38bdf8" />
+  
+  <rect x="530" y="110" width="200" height="150" rx="8" fill="url(#card-grad)" stroke="#6366f1" stroke-width="1" stroke-opacity="0.3" />
+  <circle cx="630" cy="165" r="30" fill="#818cf8" fill-opacity="0.2" />
+  <rect x="550" y="220" width="110" height="12" rx="4" fill="#f8fafc" fill-opacity="0.9" />
+  <rect x="550" y="240" width="50" height="10" rx="3" fill="#818cf8" />
+  
+  <!-- Analytics bar inside storefront -->
+  <rect x="290" y="280" width="440" height="150" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1" />
+  <path d="M320 380 Q 400 320, 480 350 T 640 310 T 700 330" fill="none" stroke="#06b6d4" stroke-width="3" stroke-linecap="round" />
+  <text x="320" y="310" fill="#f1f5f9" font-family="system-ui, sans-serif" font-size="13" font-weight="600">Headless Edge Cart &amp; Real-time Stock</text>
+  <text x="320" y="330" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="11">Sub-100ms global latency · Dynamic revalidation</text>
+</svg>

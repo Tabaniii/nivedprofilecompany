@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400" fill="none">
+  <defs>
+    <linearGradient id="avatar-grad" x1="0" y1="0" x2="400" y2="400" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3b82f6" />
+      <stop offset="50%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#06b6d4" />
+    </linearGradient>
+    <linearGradient id="inner-glow" x1="200" y1="50" x2="200" y2="350" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.3" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" rx="200" fill="url(#avatar-grad)" />
+  <circle cx="200" cy="200" r="190" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2" />
+  
+  <!-- Stylized Monogram and Tech Motif -->
+  <g transform="translate(100, 100)">
+    <!-- Base Shape / Shield -->
+    <path d="M20 50 L100 10 L180 50 L180 140 C180 175 145 195 100 200 C55 195 20 175 20 140 Z" fill="#0f172a" fill-opacity="0.85" stroke="#38bdf8" stroke-width="3" stroke-linejoin="round" />
+    
+    <!-- Code Bracket and N Letterform -->
+    <path d="M60 80 L90 140 L90 80 L110 80 L110 145 L80 85 L80 145 L60 145 Z" fill="#f8fafc" />
+    <path d="M125 100 L140 115 L125 130" stroke="#38bdf8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M40 130 L25 115 L40 100" stroke="#818cf8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+</svg>

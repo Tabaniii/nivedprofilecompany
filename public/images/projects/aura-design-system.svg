@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" fill="none">
+  <defs>
+    <linearGradient id="aura-bg" x1="0" y1="0" x2="800" y2="500" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#042f2e" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" rx="16" fill="url(#aura-bg)" />
+  <rect x="40" y="40" width="720" height="420" rx="12" fill="#0f172a" fill-opacity="0.8" stroke="#134e4a" stroke-width="1.5" />
+  
+  <text x="70" y="85" fill="#2dd4bf" font-family="system-ui, sans-serif" font-size="14" font-weight="700">AURA // DESIGN SYSTEM &amp; TOKENS</text>
+
+  <!-- Color Swatches Row -->
+  <g transform="translate(70, 115)">
+    <rect x="0" y="0" width="100" height="70" rx="8" fill="#14b8a6" />
+    <text x="10" y="55" fill="#ffffff" font-family="system-ui, sans-serif" font-size="11" font-weight="600">Teal 500</text>
+
+    <rect x="115" y="0" width="100" height="70" rx="8" fill="#0ea5e9" />
+    <text x="125" y="55" fill="#ffffff" font-family="system-ui, sans-serif" font-size="11" font-weight="600">Sky 500</text>
+
+    <rect x="230" y="0" width="100" height="70" rx="8" fill="#6366f1" />
+    <text x="240" y="55" fill="#ffffff" font-family="system-ui, sans-serif" font-size="11" font-weight="600">Indigo 500</text>
+
+    <rect x="345" y="0" width="100" height="70" rx="8" fill="#f43f5e" />
+    <text x="355" y="55" fill="#ffffff" font-family="system-ui, sans-serif" font-size="11" font-weight="600">Rose 500</text>
+
+    <rect x="460" y="0" width="180" height="70" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1" />
+    <text x="475" y="32" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="12" font-weight="600">Contrast Check</text>
+    <text x="475" y="52" fill="#2dd4bf" font-family="system-ui, sans-serif" font-size="11">✓ WCAG AAA (12.4:1)</text>
+  </g>
+
+  <!-- UI Components Grid -->
+  <g transform="translate(70, 220)">
+    <!-- Button Previews -->
+    <rect x="0" y="0" width="130" height="42" rx="21" fill="#14b8a6" />
+    <text x="36" y="26" fill="#042f2e" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Primary</text>
+
+    <rect x="145" y="0" width="130" height="42" rx="21" fill="none" stroke="#2dd4bf" stroke-width="1.5" />
+    <text x="180" y="26" fill="#2dd4bf" font-family="system-ui, sans-serif" font-size="13" font-weight="600">Outline</text>
+
+    <!-- Badges -->
+    <rect x="290" y="8" width="80" height="26" rx="13" fill="#134e4a" />
+    <text x="306" y="25" fill="#5eead4" font-family="system-ui, sans-serif" font-size="11" font-weight="600">Badge</text>
+
+    <!-- Input Mockup -->
+    <rect x="390" y="0" width="250" height="42" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1" />
+    <text x="408" y="26" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="12">Type token name...</text>
+  </g>
+
+  <!-- Accessibility specs card -->
+  <rect x="70" y="295" width="640" height="135" rx="8" fill="#111827" fill-opacity="0.6" stroke="#1f2937" stroke-width="1" />
+  <text x="95" y="330" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="14" font-weight="600">Automated A11y &amp; Keyboard Focus Management</text>
+  <text x="95" y="355" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="12">Zero-dependency token transformer generating Tailwind config, CSS custom properties, and JSON schemas.</text>
+  <rect x="95" y="380" width="140" height="24" rx="4" fill="#042f2e" stroke="#14b8a6" stroke-width="1" />
+  <text x="108" y="396" fill="#2dd4bf" font-family="monospace" font-size="11">tokens.build()</text>
+</svg>
