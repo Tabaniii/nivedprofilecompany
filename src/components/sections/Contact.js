@@ -37,22 +37,22 @@ export function Contact() {
     <section
       id="contact"
       aria-labelledby="contact-heading"
-      className="py-20 md:py-28 border-t border-zinc-200/60 dark:border-zinc-850/60"
+      className="py-20 md:py-28 border-t border-zinc-800/60"
     >
       <Container>
         {/* Section Header */}
         <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-16">
           <Badge variant="brand" size="md" className="mb-3">
-            Let&apos;s Connect
+            Merchant Consultation
           </Badge>
           <h2
             id="contact-heading"
             className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
           >
-            Start a Conversation
+            Ready to Modernize Your Retail Operations?
           </h2>
-          <p className="mt-4 text-base text-zinc-600 dark:text-zinc-400">
-            Have a project in mind, need technical leadership, or just want to chat about engineering? I&apos;m always open to discussing new opportunities.
+          <p className="mt-4 text-base text-zinc-400">
+            Whether you need custom offline-first POS systems, smart hardware terminals, or store optimization consulting, our team is ready to empower your business.
           </p>
         </div>
 
@@ -61,21 +61,21 @@ export function Contact() {
           <div className="lg:col-span-5 flex flex-col gap-6">
             <Card className="flex flex-col gap-5">
               <h3 className="text-xl font-bold text-foreground tracking-tight">
-                Direct Contact
+                Solutions Inquiry
               </h3>
-              <p className="text-sm text-zinc-600 dark:text-zinc-400">
-                Feel free to email me directly or copy my email address to your clipboard.
+              <p className="text-sm text-zinc-400">
+                Reach out to our retail solutions team to schedule a live POS demo, explore smart hardware setups, or discuss pilot merchant onboarding.
               </p>
 
               {/* Copy email bar */}
-              <div className="flex items-center justify-between gap-3 rounded-xl border border-zinc-200 bg-zinc-50/70 p-3 dark:border-zinc-800 dark:bg-zinc-800/40">
+              <div className="flex items-center justify-between gap-3 rounded-xl border border-zinc-800 bg-zinc-800/40 p-3">
                 <span className="truncate text-sm font-medium text-foreground select-all">
                   {emailAddress}
                 </span>
                 <button
                   type="button"
                   onClick={handleCopyEmail}
-                  className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg border border-zinc-200 bg-background px-3 text-xs font-semibold text-zinc-700 transition-colors hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-200 dark:hover:bg-zinc-750 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 cursor-pointer"
+                  className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg border border-zinc-700 bg-background px-3 text-xs font-semibold text-zinc-200 transition-colors hover:bg-zinc-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 cursor-pointer"
                   aria-label="Copy email address"
                 >
                   {copied ? "Copied!" : "Copy"}
@@ -84,8 +84,8 @@ export function Contact() {
 
               {/* Social links grid */}
               <div className="pt-2">
-                <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-3">
-                  Find me online
+                <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-3">
+                  Company Channels
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {profile.socials.map((social) => (

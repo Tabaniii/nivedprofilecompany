@@ -1,109 +1,104 @@
-import Image from "next/image";
+"use client";
+
 import { profile } from "@/lib/data/profile";
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
-import { Badge } from "@/components/ui/Badge";
+import Threads from "@/components/ui/Threads";
 
 export function Hero() {
   return (
     <section
       id="top"
       aria-labelledby="hero-heading"
-      className="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden"
+      className="relative isolate h-screen h-[100dvh] w-full flex flex-col items-center justify-center overflow-hidden bg-[#070709] text-white"
     >
-      {/* Background ambient lighting */}
-      <div
-        className="pointer-events-none absolute top-12 left-1/2 -translate-x-1/2 -z-10 h-[360px] w-[600px] max-w-full rounded-full bg-gradient-to-tr from-blue-500/15 via-indigo-500/10 to-teal-400/15 blur-3xl"
-        aria-hidden="true"
-      />
+      {/* Threads Canvas Background Effect */}
+      <div className="absolute inset-0 z-0 w-full h-full pointer-events-none">
+        <Threads
+          color="#ffffff"
+          lineCount={90}
+          thickness={0.6}
+          softness={1.3}
+          amplitude={1.7}
+          distance={0.4}
+          waves={1.05}
+          speed={0.6}
+          split={0.04}
+          fray={0.5}
+          angle={25}
+          taper={0.85}
+          brightness={1.4}
+          parting={0.25}
+          enableMouseInteraction={true}
+          fade={0}
+          opacity={1}
+        />
+      </div>
 
-      <Container>
-        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-8">
-          {/* Main Info Column */}
-          <div className="flex flex-col items-center text-center lg:items-start lg:text-left lg:col-span-7">
-            {/* Availability status badge */}
-            <div className="mb-6 flex items-center gap-2">
-              <Badge variant="success" size="md" className="gap-2">
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-                </span>
-                {profile.availability.status}
-              </Badge>
-            </div>
+      {/* Gentle bottom gradient fade into next section */}
+      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background to-transparent pointer-events-none z-[1]" />
 
-            {/* Single <h1> for the entire page */}
-            <h1
-              id="hero-heading"
-              className="text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl"
-            >
-              Hi, I&apos;m{" "}
-              <span className="bg-gradient-to-r from-blue-600 via-indigo-500 to-cyan-500 bg-clip-text text-transparent">
-                {profile.name}
-              </span>
-              <br />
-              {profile.title}
-            </h1>
+      {/* Main Centered Proportional Content */}
+      <Container className="relative z-10 flex flex-col items-center text-center max-w-4xl px-4 my-auto pt-12">
+        {/* Badge: Digital Solutions & Innovation Studio */}
+        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 py-1.5 px-4 text-[10px] sm:text-xs font-semibold tracking-wider uppercase text-zinc-200 backdrop-blur-md shadow-xs transition-transform duration-200 hover:scale-[1.02]">
+          <span className="inline-block h-1.5 w-1.5 rounded-full bg-white animate-pulse" />
+          <span>DIGITAL SOLUTIONS • TECH &amp; INNOVATION STUDIO</span>
+        </div>
 
-            {/* Subtitle / Tagline */}
-            <p className="mt-6 text-lg sm:text-xl text-zinc-600 dark:text-zinc-300 max-w-2xl leading-relaxed">
-              {profile.tagline}
-            </p>
+        {/* Main Headline (H1) */}
+        <h1
+          id="hero-heading"
+          className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.14] drop-shadow-sm max-w-4xl"
+        >
+          Architecting Scalable Digital Solutions
+          <br className="hidden sm:inline" />{" "}
+          <span className="text-zinc-300 font-medium">
+            for Modern Businesses
+          </span>
+        </h1>
 
-            {/* CTA Buttons */}
-            <div className="mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-4">
-              <Button href="#projects" variant="primary" size="lg">
-                View Featured Work
-              </Button>
-              <Button href="#contact" variant="outline" size="lg">
-                Get in Touch
-              </Button>
-            </div>
+        {/* Subheadline Paragraph */}
+        <p className="mt-5 text-sm sm:text-base text-zinc-400 max-w-2xl mx-auto leading-relaxed">
+          {profile.tagline}
+        </p>
 
-            {/* Quick stats row */}
-            <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 w-full pt-8 border-t border-zinc-200/80 dark:border-zinc-800/80">
-              {profile.stats.map((stat) => (
-                <div key={stat.label} className="flex flex-col items-center lg:items-start">
-                  <span className="text-2xl font-bold tracking-tight text-foreground">
-                    {stat.value}
-                  </span>
-                  <span className="text-xs text-zinc-500 dark:text-zinc-400">
-                    {stat.label}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Profile Visual Column */}
-          <div className="flex justify-center lg:justify-end lg:col-span-5">
-            <div className="relative group">
-              {/* Outer decorative gradient frame */}
-              <div
-                className="absolute -inset-1 rounded-full bg-gradient-to-r from-blue-600 to-teal-400 opacity-30 blur-lg transition duration-500 group-hover:opacity-60"
-                aria-hidden="true"
-              />
-              <div className="relative h-64 w-64 sm:h-80 sm:w-80 rounded-full border-4 border-background bg-zinc-100 p-2 shadow-2xl dark:bg-zinc-900">
-                <Image
-                  src={profile.avatar}
-                  alt={`${profile.name} profile portrait`}
-                  width={320}
-                  height={320}
-                  priority
-                  className="h-full w-full rounded-full object-cover"
-                />
-              </div>
-
-              {/* Floating tech badge */}
-              <div className="absolute -bottom-2 right-4 rounded-xl border border-zinc-200 bg-background/90 px-4 py-2 shadow-lg backdrop-blur-md dark:border-zinc-800">
-                <p className="text-xs font-semibold text-foreground">
-                  📍 {profile.location}
-                </p>
-              </div>
-            </div>
-          </div>
+        {/* CTA Buttons */}
+        <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
+          <a
+            href="#projects"
+            className="inline-flex items-center justify-center rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-zinc-950 transition-all hover:bg-zinc-200 shadow-md shadow-white/5 active:scale-[0.98]"
+          >
+            Explore Solutions
+          </a>
+          <a
+            href="#contact"
+            className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-6 py-2.5 text-sm font-medium text-zinc-200 backdrop-blur-md transition-all hover:bg-white/10 hover:text-white active:scale-[0.98]"
+          >
+            Book a Consultation
+          </a>
         </div>
       </Container>
+
+      {/* Subtle Bottom Scroll Indicator */}
+      <a
+        href="#about"
+        className="absolute bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-2 text-xs text-zinc-500 hover:text-zinc-300 transition-colors z-10 select-none group"
+        aria-label="Scroll to overview section"
+      >
+        <span className="text-[10px] tracking-widest uppercase font-medium text-zinc-500 group-hover:text-zinc-400">
+          Scroll to explore
+        </span>
+        <svg
+          className="h-3.5 w-3.5 text-zinc-400 animate-bounce"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth="2"
+          aria-hidden="true"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
+      </a>
     </section>
   );
 }

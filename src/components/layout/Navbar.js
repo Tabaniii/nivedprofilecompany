@@ -1,50 +1,34 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { profile } from "@/lib/data/profile";
-import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        scrolled
-          ? "bg-background/80 backdrop-blur-md border-b border-zinc-200/50 dark:border-zinc-800/50 py-3 shadow-xs"
-          : "bg-transparent py-5"
-      }`}
-    >
-      <Container>
+    <header className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
+      <div className="w-full max-w-4xl pointer-events-auto">
         <nav
-          className="flex items-center justify-between"
+          className="flex items-center justify-between rounded-full border border-white/10 bg-zinc-950/70 px-5 py-2.5 shadow-xl shadow-black/40 backdrop-blur-xl transition-all duration-300"
           aria-label="Main navigation"
         >
           {/* Logo */}
           <Link
             href="#top"
-            className="group flex items-center gap-2.5 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 py-1"
+            className="group flex items-center gap-2.5 rounded-full py-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
             aria-label={`${profile.name} - Home`}
           >
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-foreground text-background font-bold text-sm tracking-tight transition-transform duration-200 group-hover:scale-105">
+            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-black font-bold text-xs tracking-tight transition-transform duration-200 group-hover:scale-105">
               {profile.name.charAt(0)}
             </span>
-            <span className="text-base font-bold tracking-tight text-foreground transition-colors">
+            <span className="text-sm font-semibold tracking-tight text-white transition-colors">
               {profile.name}
-              <span className="text-blue-500">.</span>
+              <span className="text-blue-400">.</span>
             </span>
           </Link>
 
@@ -54,7 +38,7 @@ export function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="min-h-[44px] inline-flex items-center px-4 text-sm font-medium text-zinc-600 transition-colors hover:text-foreground dark:text-zinc-400 dark:hover:text-zinc-100 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                className="inline-flex items-center px-3.5 py-1.5 text-xs font-medium text-zinc-400 transition-colors hover:text-white rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
               >
                 {link.label}
               </a>
@@ -62,8 +46,12 @@ export function Navbar() {
           </div>
 
           {/* Right Action / Contact Button */}
-          <div className="hidden md:flex items-center gap-3">
-            <Button href="#contact" variant="primary" size="sm">
+          <div className="hidden md:flex items-center">
+            <Button
+              href="#contact"
+              size="sm"
+              className="rounded-full bg-white text-zinc-950 hover:bg-zinc-200 font-semibold text-xs px-4 py-1.5 shadow-xs"
+            >
               Contact Me
             </Button>
           </div>
@@ -72,13 +60,13 @@ export function Navbar() {
           <button
             type="button"
             onClick={() => setIsOpen(!isOpen)}
-            className="flex md:hidden min-h-[44px] min-w-[44px] items-center justify-center rounded-xl border border-zinc-200 p-2 text-zinc-700 transition-colors hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:border-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-800"
+            className="flex md:hidden h-8 w-8 items-center justify-center rounded-full border border-white/10 p-1.5 text-zinc-300 transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
             aria-expanded={isOpen}
             aria-controls="mobile-menu"
             aria-label="Toggle navigation menu"
           >
             <svg
-              className="h-5 w-5"
+              className="h-4 w-4"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth="2"
@@ -106,7 +94,7 @@ export function Navbar() {
         {isOpen && (
           <div
             id="mobile-menu"
-            className="md:hidden mt-3 rounded-2xl border border-zinc-200/80 bg-background/95 p-4 shadow-xl backdrop-blur-xl dark:border-zinc-800/80 animate-in fade-in slide-in-from-top-2 duration-200"
+            className="md:hidden mt-2 rounded-2xl border border-white/10 bg-zinc-950/95 p-4 shadow-2xl backdrop-blur-xl animate-in fade-in slide-in-from-top-2 duration-200"
           >
             <div className="flex flex-col gap-1">
               {profile.navLinks.map((link) => (
@@ -114,17 +102,16 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={closeMenu}
-                  className="flex min-h-[44px] items-center rounded-xl px-4 text-base font-medium text-zinc-700 transition-colors hover:bg-zinc-100 dark:text-zinc-200 dark:hover:bg-zinc-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                  className="flex min-h-[40px] items-center rounded-xl px-4 text-sm font-medium text-zinc-300 transition-colors hover:bg-white/10 hover:text-white"
                 >
                   {link.label}
                 </a>
               ))}
-              <div className="pt-2 border-t border-zinc-100 dark:border-zinc-800 mt-1">
+              <div className="pt-2 border-t border-white/10 mt-1">
                 <Button
                   href="#contact"
-                  variant="primary"
                   size="md"
-                  className="w-full"
+                  className="w-full rounded-xl bg-white text-black hover:bg-zinc-200 font-semibold text-xs"
                   onClick={closeMenu}
                 >
                   Contact Me
@@ -133,7 +120,7 @@ export function Navbar() {
             </div>
           </div>
         )}
-      </Container>
+      </div>
     </header>
   );
 }

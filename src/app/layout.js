@@ -17,13 +17,12 @@ export const metadata = {
   title: `${profile.name} — ${profile.title}`,
   description: profile.bio,
   keywords: [
-    "Full-Stack Developer",
-    "Software Engineer",
-    "React",
-    "Next.js",
-    "Tailwind CSS",
-    "Portfolio",
-    "Web Development",
+    "Smart POS",
+    "Hardware Solutions",
+    "Offline Merchants",
+    "SMB Tech",
+    "Store Optimization",
+    "Digital Consulting",
     profile.name,
   ],
   authors: [{ name: profile.name, url: "https://github.com" }],
@@ -45,7 +44,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`dark ${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <SkipToContent />

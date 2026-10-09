@@ -1,61 +1,65 @@
 export const profile = {
   name: "Nived",
-  fullName: "Nived Akmal",
-  title: "Full-Stack Software Engineer",
-  tagline: "Building scalable web applications, thoughtful interfaces, and reliable digital systems.",
-  bio: "I am a passionate software engineer focused on crafting clean, accessible, and high-performance digital products. With expertise across the full stack—from design systems and modern web frameworks to scalable APIs and cloud architecture—I turn complex ideas into seamless user experiences.",
+  fullName: "Nived Studio",
+  title: "Digital Solutions & Tech Innovation Studio",
+  tagline:
+    "We empower growing businesses and brands through end-to-end digital solutions—combining bespoke web platforms, intelligent offline-to-online marketing touchpoints, and scalable systems designed to drive real growth.",
+  bio: "We are an end-to-end digital partner delivering custom software, intelligent marketing touchpoints (including smart NFC ecosystems), and business process automation to accelerate modern business growth.",
   location: "Indonesia",
   availability: {
-    status: "Available for opportunities",
-    badge: "Open for work",
+    status: "Accepting New Projects",
+    badge: "Digital Solutions Studio",
   },
-  avatar: "/images/avatar.svg",
+  avatar: "/icon.png",
   stats: [
-    { label: "Years Experience", value: "4+" },
-    { label: "Projects Completed", value: "25+" },
-    { label: "Client Satisfaction", value: "99%" },
-    { label: "Code Quality & Uptime", value: "99.9%" },
+    { label: "Active Deployments", value: "500+" },
+    { label: "Interactions Handled", value: "2.4M+" },
+    { label: "Efficiency Speedup", value: "2.5x" },
+    { label: "Platform Uptime", value: "99.98%" },
   ],
   navLinks: [
-    { label: "About", href: "#about" },
-    { label: "Skills", href: "#skills" },
-    { label: "Projects", href: "#projects" },
-    { label: "Contact", href: "#contact" },
+    { label: "Overview", href: "#about" },
+    { label: "Capabilities", href: "#skills" },
+    { label: "Solutions", href: "#projects" },
+    { label: "Consultation", href: "#contact" },
   ],
   socials: [
     {
       name: "GitHub",
       href: "https://github.com",
-      username: "@nived",
+      username: "@nived-tech",
     },
     {
       name: "LinkedIn",
       href: "https://linkedin.com",
-      username: "nived-engineer",
+      username: "nived-tech-startup",
     },
     {
       name: "Twitter / X",
       href: "https://x.com",
-      username: "@nived_dev",
+      username: "@nived_tech",
     },
     {
       name: "Email",
-      href: "mailto:hello@nived.dev",
-      username: "hello@nived.dev",
+      href: "mailto:contact@nived.tech",
+      username: "contact@nived.tech",
     },
   ],
   highlights: [
     {
-      title: "Full-Stack Architecture",
-      description: "Designing end-to-end applications with modular architectures, type-safety, and optimized database pipelines.",
+      title: "Bespoke Web & Cloud Platforms",
+      description:
+        "High-performance digital products, web applications, and scalable cloud architectures engineered for seamless user experience and maximum conversion.",
     },
     {
-      title: "Modern Frontend Engineering",
-      description: "Delivering fast, accessible web applications using React, Next.js App Router, Tailwind CSS, and Web Vitals best practices.",
+      title: "Intelligent Offline-to-Online Touchpoints",
+      description:
+        "Smart NFC ecosystems, connected IoT devices, and interactive physical-to-digital experiences that bridge customer interactions with real-time digital engagement.",
     },
     {
-      title: "Performance & Reliability",
-      description: "Prioritizing sub-second load times, Core Web Vitals optimization, responsive ergonomics, and WCAG accessibility standards.",
+      title: "Business Process Automation",
+      description:
+        "Custom workflow automation, API integrations, and data-driven systems designed to eliminate manual bottlenecks and scale operations efficiently.",
     },
   ],
 };

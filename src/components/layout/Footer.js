@@ -77,9 +77,9 @@ export function Footer() {
         </div>
 
         {/* Bottom copyright notice */}
-        <div className="mt-8 pt-8 border-t border-zinc-200/60 dark:border-zinc-800/60 text-center">
-          <p className="text-xs text-zinc-500 dark:text-zinc-500">
-            © {currentYear} {profile.name}. All rights reserved. Crafted with Next.js &amp; Tailwind CSS.
+        <div className="mt-8 pt-8 border-t border-zinc-800/60 text-center">
+          <p className="text-xs text-zinc-500">
+            © {currentYear} {profile.fullName || profile.name}. All rights reserved. Empowering offline merchants &amp; SMBs through smart hardware &amp; custom POS.
           </p>
         </div>
       </Container>
