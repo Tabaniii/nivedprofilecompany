@@ -13,7 +13,7 @@ export function Contact() {
   const [message, setMessage] = useState("");
 
   const emailSocial = profile.socials.find((s) => s.name === "Email");
-  const emailAddress = emailSocial?.username || "hello@nived.dev";
+  const emailAddress = emailSocial?.username || "nived.labs@gmail.com";
 
   const handleCopyEmail = async () => {
     try {
