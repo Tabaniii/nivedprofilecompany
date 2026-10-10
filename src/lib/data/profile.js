@@ -41,8 +41,8 @@ export const profile = {
     },
     {
       name: "Email",
-      href: "mailto:contact@nived.tech",
-      username: "contact@nived.tech",
+      href: "mailto:nived.labs@gmail.com",
+      username: "nived.labs@gmail.com",
     },
   ],
   highlights: [
