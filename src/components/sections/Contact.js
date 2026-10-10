@@ -42,9 +42,6 @@ export function Contact() {
       <Container>
         {/* Section Header */}
         <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-16">
-          <Badge variant="brand" size="md" className="mb-3">
-            Merchant Consultation
-          </Badge>
           <h2
             id="contact-heading"
             className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl"

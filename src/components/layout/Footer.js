@@ -50,7 +50,7 @@ export function Footer() {
     <footer
       id="contact"
       aria-label="Footer"
-      className="relative w-full bg-[#050505] text-white selection:bg-[#30E391]/20 selection:text-[#30E391] border-t border-white/[0.08] overflow-hidden"
+      className="relative w-full bg-[#0A0A0A] text-white selection:bg-white/20 selection:text-white border-t border-white/[0.08] overflow-hidden"
     >
       {/* 1. Pre-Footer Call to Action (CTA) */}
       <section
@@ -73,7 +73,7 @@ export function Footer() {
             <a
               href="#download"
               id="cta-download-btn"
-              className="group relative inline-flex items-center justify-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-[#30E391] hover:bg-[#3bf59e] text-[#050505] font-bold text-sm sm:text-base tracking-tight transition-all duration-300 shadow-[0_0_24px_rgba(48,227,145,0.25)] hover:shadow-[0_0_35px_rgba(48,227,145,0.45)] hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#30E391] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050505]"
+              className="group relative inline-flex items-center justify-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-white hover:bg-zinc-200 text-[#000000] font-bold text-sm sm:text-base tracking-tight transition-all duration-300 shadow-[0_0_24px_rgba(255,255,255,0.15)] hover:shadow-[0_0_35px_rgba(255,255,255,0.25)] hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A0A]"
             >
               {/* Apple / OS icon */}
               <svg
@@ -115,12 +115,12 @@ export function Footer() {
               {/* Minimalist nived Logo Badge matching TRAE aesthetic */}
               <Link
                 href="#top"
-                className="group inline-flex items-center gap-3 w-fit focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#30E391] rounded-lg p-1 -m-1"
+                className="group inline-flex items-center gap-3 w-fit focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded-lg p-1 -m-1"
                 aria-label="nived home"
               >
                 {/* Sleek cyber pixel badge */}
-                <div className="relative w-9 h-9 rounded-xl bg-zinc-900 border border-white/15 flex items-center justify-center transition-all duration-300 group-hover:border-[#30E391]/80 group-hover:shadow-[0_0_15px_rgba(48,227,145,0.3)]">
-                  <div className="w-4 h-4 rounded-md bg-[#30E391] flex items-center justify-center">
+                <div className="relative w-9 h-9 rounded-xl bg-zinc-900 border border-white/15 flex items-center justify-center transition-all duration-300 group-hover:border-purple-500/80 group-hover:shadow-[0_0_15px_rgba(168,85,247,0.3)]">
+                  <div className="w-4 h-4 rounded-md bg-white flex items-center justify-center transition-colors group-hover:bg-purple-400">
                     <div className="w-1.5 h-1.5 rounded-sm bg-black" />
                   </div>
                 </div>
@@ -138,8 +138,8 @@ export function Footer() {
             {/* System Status Pill */}
             <div className="mt-6 md:mt-8 flex items-center gap-2.5 text-xs text-zinc-400 font-mono">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#30E391] opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#30E391]" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-white" />
               </span>
               <span>All Systems Operational</span>
             </div>
@@ -159,7 +159,7 @@ export function Footer() {
                       {...(link.external
                         ? { target: "_blank", rel: "noopener noreferrer" }
                         : {})}
-                      className="inline-flex text-sm font-normal text-zinc-400 hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:text-[#30E391]"
+                      className="inline-flex text-sm font-normal text-zinc-400 hover:text-white transition-colors duration-200 focus-visible:outline-none focus-visible:text-white"
                     >
                       {link.label}
                     </a>
@@ -184,7 +184,7 @@ export function Footer() {
             <div className="inline-flex items-center gap-1.5 text-zinc-300">
               {/* Shield Icon */}
               <svg
-                className="w-3.5 h-3.5 text-[#30E391]"
+                className="w-3.5 h-3.5 text-white"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -259,7 +259,7 @@ export function Footer() {
           <div className="order-3">
             <button
               onClick={scrollToTop}
-              className="group inline-flex items-center gap-1.5 text-zinc-400 hover:text-white transition-colors duration-200 cursor-pointer focus-visible:outline-none focus-visible:text-[#30E391]"
+              className="group inline-flex items-center gap-1.5 text-zinc-400 hover:text-white transition-colors duration-200 cursor-pointer focus-visible:outline-none focus-visible:text-white"
             >
               <span>Back to top</span>
               <svg

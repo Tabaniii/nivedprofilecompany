@@ -3,15 +3,151 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
+ * Brand Style Variations
+ */
+const BRAND_VARIATIONS = [
+  {
+    id: "geometric-lower",
+    text: "nived",
+    name: "Geometric Modern",
+    fontFamily:
+      'var(--font-geist-sans), "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
+    fontSize: "clamp(4.5rem, 19vw, 26rem)",
+    letterSpacing: "-0.045em",
+    fontWeight: 900,
+    fontStyle: "normal",
+    transform: "none",
+    stroke: false,
+  },
+  {
+    id: "brutalist-upper",
+    text: "NIVED",
+    name: "Brutalist Monolith",
+    fontFamily:
+      'var(--font-geist-sans), "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
+    fontSize: "clamp(4.5rem, 19vw, 26rem)",
+    letterSpacing: "-0.05em",
+    fontWeight: 900,
+    fontStyle: "normal",
+    transform: "none",
+    stroke: false,
+  },
+  {
+    id: "terminal-mono",
+    text: "[ nived ]",
+    name: "Terminal Bracket",
+    fontFamily:
+      'var(--font-geist-mono), "JetBrains Mono", ui-monospace, monospace',
+    fontSize: "clamp(3.5rem, 14vw, 19rem)",
+    letterSpacing: "-0.02em",
+    fontWeight: 800,
+    fontStyle: "normal",
+    transform: "none",
+    stroke: false,
+  },
+  {
+    id: "wireframe-stroke",
+    text: "NIVED",
+    name: "Hollow Wireframe",
+    fontFamily:
+      'var(--font-geist-sans), "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
+    fontSize: "clamp(4.5rem, 19vw, 26rem)",
+    letterSpacing: "-0.03em",
+    fontWeight: 900,
+    fontStyle: "normal",
+    transform: "none",
+    stroke: true,
+  },
+  {
+    id: "velocity-italic",
+    text: "NIVED //",
+    name: "Velocity Speed",
+    fontFamily:
+      'var(--font-geist-sans), "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
+    fontSize: "clamp(4rem, 16vw, 22rem)",
+    letterSpacing: "-0.04em",
+    fontWeight: 900,
+    fontStyle: "italic",
+    transform: "skewX(-6deg)",
+    stroke: false,
+  },
+  {
+    id: "dev-tag",
+    text: "<nived />",
+    name: "Component Tag",
+    fontFamily:
+      'var(--font-geist-mono), "JetBrains Mono", ui-monospace, monospace',
+    fontSize: "clamp(3.2rem, 13vw, 17rem)",
+    letterSpacing: "-0.03em",
+    fontWeight: 800,
+    fontStyle: "normal",
+    transform: "none",
+    stroke: false,
+  },
+  {
+    id: "spaced-monogram",
+    text: "N • I • V • E • D",
+    name: "Monogram Spaced",
+    fontFamily:
+      'var(--font-geist-sans), "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
+    fontSize: "clamp(2.8rem, 11vw, 14rem)",
+    letterSpacing: "0.08em",
+    fontWeight: 900,
+    fontStyle: "normal",
+    transform: "none",
+    stroke: false,
+  },
+  {
+    id: "cyber-leet",
+    text: "N1V3D",
+    name: "Cyber Matrix",
+    fontFamily:
+      'var(--font-geist-mono), "JetBrains Mono", ui-monospace, monospace',
+    fontSize: "clamp(4.2rem, 18vw, 24rem)",
+    letterSpacing: "-0.02em",
+    fontWeight: 900,
+    fontStyle: "normal",
+    transform: "none",
+    stroke: false,
+  },
+  {
+    id: "terminal-prompt",
+    text: "_nived",
+    name: "Prompt Terminal",
+    fontFamily:
+      'var(--font-geist-mono), "JetBrains Mono", ui-monospace, monospace',
+    fontSize: "clamp(4.2rem, 17vw, 23rem)",
+    letterSpacing: "-0.03em",
+    fontWeight: 900,
+    fontStyle: "normal",
+    transform: "none",
+    stroke: false,
+  },
+  {
+    id: "editorial-serif",
+    text: "Nived.",
+    name: "Editorial Serif",
+    fontFamily:
+      'Georgia, "Times New Roman", Cambria, serif',
+    fontSize: "clamp(4.5rem, 18vw, 24rem)",
+    letterSpacing: "-0.02em",
+    fontWeight: 800,
+    fontStyle: "italic",
+    transform: "none",
+    stroke: false,
+  },
+];
+
+/**
  * NivedBrandBanner
  * 
  * Signature bottom visual brand showcase banner inspired by TRAE.
  * Features:
  * - Full-width electric/neon green background (#30E391)
- * - Massive bold geometric display typography ("nived") in pitch black
- * - Interactive HTML5 Canvas pixel dissolution, glitch tearing, and cursor-trail fragmentation
- * - Click shockwave burst with scattering pixel blocks
- * - Click or tap to toggle between lowercase "nived" and uppercase "NIVED"
+ * - Massive bold display typography with 10 interactive style variations on click
+ * - Real-time HTML5 Canvas pixel dissolution, glitch tearing, and cursor-trail fragmentation
+ * - Click shockwave burst with scattering pixel blocks & instant style morph
+ * - Smooth 60fps/120fps requestAnimationFrame with auto-cleanup
  * - Responsive auto-scaling typography
  * - Full accessibility with screen reader fallback
  */
@@ -19,7 +155,10 @@ export function NivedBrandBanner() {
   const containerRef = useRef(null);
   const canvasRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
-  const [brandStyle, setBrandStyle] = useState("nived");
+  const [variationIndex, setVariationIndex] = useState(0);
+  const [isGlitching, setIsGlitching] = useState(false);
+
+  const currentVariation = BRAND_VARIATIONS[variationIndex];
 
   // Keep references to state for 60fps render loop
   const stateRef = useRef({
@@ -48,10 +187,9 @@ export function NivedBrandBanner() {
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-
-    const GREEN = "#30E391";
-    const BLACK = "#050505";
-    const WHITE = "#FFFFFF";
+    const BRAND_BG = "#0A0A0A";
+    const BRAND_TEXT = "#FFFFFF";
+    const BRAND_ACCENT = "#A855F7";
 
     const updateSize = () => {
       const rect = container.getBoundingClientRect();
@@ -103,7 +241,7 @@ export function NivedBrandBanner() {
             h: Math.random() * 28 + 6,
             offset: (Math.random() - 0.5) * 36,
             life: 1.0,
-            color: Math.random() < 0.5 ? BLACK : GREEN,
+            color: Math.random() < 0.5 ? BRAND_TEXT : BRAND_BG,
           });
         }
         sliceTimer = 0;
@@ -122,7 +260,7 @@ export function NivedBrandBanner() {
         ctx.fillRect(0, slice.y, width, slice.h);
 
         // Bright glitch edge line
-        ctx.fillStyle = WHITE;
+        ctx.fillStyle = BRAND_TEXT;
         ctx.globalAlpha = slice.life * 0.9;
         ctx.fillRect(slice.offset, slice.y, width, 2);
       }
@@ -139,7 +277,7 @@ export function NivedBrandBanner() {
           continue;
         }
 
-        ctx.strokeStyle = BLACK;
+        ctx.strokeStyle = BRAND_TEXT;
         ctx.lineWidth = Math.max(2, 6 * wave.life);
         ctx.globalAlpha = wave.life * 0.75;
         ctx.strokeRect(
@@ -150,7 +288,7 @@ export function NivedBrandBanner() {
         );
 
         // Pixel corners on shockwave
-        ctx.fillStyle = WHITE;
+        ctx.fillStyle = BRAND_TEXT;
         const cornerSize = 8;
         ctx.fillRect(wave.x - wave.radius, wave.y - wave.radius, cornerSize, cornerSize);
         ctx.fillRect(wave.x + wave.radius - cornerSize, wave.y - wave.radius, cornerSize, cornerSize);
@@ -175,7 +313,7 @@ export function NivedBrandBanner() {
 
         let renderColor = b.color;
         if (Math.random() < 0.15) {
-          renderColor = Math.random() < 0.5 ? WHITE : GREEN;
+          renderColor = Math.random() < 0.5 ? BRAND_ACCENT : BRAND_BG;
         }
 
         ctx.fillStyle = renderColor;
@@ -211,7 +349,7 @@ export function NivedBrandBanner() {
             if (dist < auraR) {
               const intensity = (1 - dist / auraR);
               if (Math.random() < intensity * 0.55) {
-                ctx.fillStyle = Math.random() < 0.6 ? BLACK : WHITE;
+                ctx.fillStyle = Math.random() < 0.6 ? BRAND_TEXT : BRAND_ACCENT;
                 ctx.globalAlpha = intensity * 0.75;
                 ctx.fillRect(gx, gy, step - 1, step - 1);
               }
@@ -234,9 +372,9 @@ export function NivedBrandBanner() {
 
   const spawnBlocks = (cx, cy, count, speedMult = 1) => {
     const { width, blocks, mouse } = stateRef.current;
-    const GREEN = "#30E391";
-    const BLACK = "#050505";
-    const WHITE = "#FFFFFF";
+    const BRAND_BG = "#0A0A0A";
+    const BRAND_TEXT = "#FFFFFF";
+    const BRAND_ACCENT = "#A855F7";
 
     const sizes = width < 640 ? [8, 12] : [10, 14, 18, 24];
 
@@ -245,7 +383,7 @@ export function NivedBrandBanner() {
       const angle = Math.random() * Math.PI * 2;
       const speed = (Math.random() * 4 + 2) * speedMult;
       const colorRand = Math.random();
-      const color = colorRand < 0.45 ? BLACK : colorRand < 0.8 ? GREEN : WHITE;
+      const color = colorRand < 0.45 ? BRAND_TEXT : colorRand < 0.8 ? BRAND_BG : BRAND_ACCENT;
 
       blocks.push({
         x: cx + (Math.random() - 0.5) * 40,
@@ -296,30 +434,38 @@ export function NivedBrandBanner() {
 
     const { width, height, shockwaves, slices } = stateRef.current;
 
-    // Shockwave burst
+    // Trigger expanding shockwave burst
     shockwaves.push({
       x: cx,
       y: cy,
       radius: 15,
-      maxRadius: Math.max(width, height) * 0.8,
-      speed: 18,
+      maxRadius: Math.max(width, height) * 0.85,
+      speed: 20,
       life: 1.0,
     });
 
-    // Burst of dissolving blocks
-    spawnBlocks(cx, cy, 40, 2.8);
+    // Burst of dissolving pixel particles
+    spawnBlocks(cx, cy, 45, 3.2);
 
-    // Sudden glitch slice
-    slices.push({
-      y: Math.random() * height,
-      h: Math.random() * 32 + 10,
-      offset: (Math.random() - 0.5) * 48,
-      life: 1.0,
-      color: "#050505",
-    });
+    // Multiple glitch slices on click
+    for (let s = 0; s < 3; s++) {
+      slices.push({
+        y: Math.random() * height,
+        h: Math.random() * 32 + 10,
+        offset: (Math.random() - 0.5) * 48,
+        life: 1.0,
+        color: s % 2 === 0 ? "#FFFFFF" : "#0A0A0A",
+      });
+    }
 
-    // Toggle casing for interactive fun
-    setBrandStyle((prev) => (prev === "nived" ? "NIVED" : "nived"));
+    // Trigger text glitch morph animation
+    setIsGlitching(true);
+    setTimeout(() => {
+      setIsGlitching(false);
+    }, 160);
+
+    // Cycle to next variation
+    setVariationIndex((prev) => (prev + 1) % BRAND_VARIATIONS.length);
   };
 
   const handlePointerEnter = () => {
@@ -341,25 +487,43 @@ export function NivedBrandBanner() {
       onPointerDown={handlePointerDown}
       onPointerEnter={handlePointerEnter}
       onPointerLeave={handlePointerLeave}
-      className="relative w-full h-[180px] sm:h-[240px] md:h-[320px] lg:h-[400px] xl:h-[460px] bg-[#30E391] overflow-hidden select-none cursor-crosshair touch-none group"
-      role="img"
-      aria-label="nived brand logo showcase with interactive pixel glitch effect"
+      className="relative w-full h-[180px] sm:h-[240px] md:h-[320px] lg:h-[400px] xl:h-[460px] bg-[#0A0A0A] overflow-hidden select-none cursor-pointer touch-none group"
+      role="button"
+      tabIndex={0}
+      aria-label={`nived brand showcase. Currently style: ${currentVariation.name}. Click to cycle variations.`}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          setVariationIndex((prev) => (prev + 1) % BRAND_VARIATIONS.length);
+        }
+      }}
     >
-      {/* 1. Underlying Massive Bold Geometric Brand Typography Layer */}
+      {/* 1. Underlying Massive Brand Typography Layer */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none px-3 sm:px-6 md:px-8">
         <h2
-          className={`w-full text-center font-black leading-none text-[#050505] tracking-[-0.04em] transition-transform duration-300 ${
-            isHovered ? "scale-[1.01]" : "scale-100"
+          className={`w-full text-center leading-none text-white transition-all duration-200 ${
+            isGlitching
+              ? "opacity-60 translate-x-1.5 skew-x-3 scale-[1.03]"
+              : isHovered
+              ? "scale-[1.01]"
+              : "scale-100"
           }`}
           style={{
-            fontFamily:
-              'var(--font-geist-sans), "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-            fontSize: "clamp(4.5rem, 20vw, 28rem)",
-            letterSpacing: "-0.045em",
-            fontWeight: 900,
+            fontFamily: currentVariation.fontFamily,
+            fontSize: currentVariation.fontSize,
+            letterSpacing: currentVariation.letterSpacing,
+            fontWeight: currentVariation.fontWeight,
+            fontStyle: currentVariation.fontStyle,
+            transform: currentVariation.transform,
+            ...(currentVariation.stroke
+              ? {
+                  WebkitTextStroke: "clamp(3px, 0.75vw, 7px) #FFFFFF",
+                  color: "transparent",
+                }
+              : {}),
           }}
         >
-          {brandStyle}
+          {currentVariation.text}
         </h2>
       </div>
 
@@ -375,18 +539,20 @@ export function NivedBrandBanner() {
         aria-hidden="true"
       />
 
-      {/* 4. Interactive Micro Badge / Affordance Tag */}
+      {/* 5. Bottom-Right Interactive Affordance Tag */}
       <div
-        className={`absolute bottom-3 right-4 sm:bottom-4 sm:right-6 pointer-events-none transition-all duration-300 flex items-center gap-2 px-2.5 py-1 rounded-md bg-black/10 backdrop-blur-sm text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider text-black ${
-          isHovered ? "opacity-90 translate-y-0" : "opacity-45 translate-y-0.5"
+        className={`absolute bottom-3 right-4 sm:bottom-4 sm:right-6 pointer-events-none transition-all duration-300 flex items-center gap-2 px-2.5 py-1 rounded-md bg-white/10 border border-white/10 backdrop-blur-sm text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider text-white ${
+          isHovered ? "opacity-95 translate-y-0" : "opacity-60 translate-y-0.5"
         }`}
       >
-        <span className="inline-block w-1.5 h-1.5 rounded-full bg-black animate-pulse" />
-        <span>Pixel Matrix • Hover to Dissolve</span>
+        <span className="inline-block w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+        <span>Click to Morph Variation ↻</span>
       </div>
 
-      {/* 5. Accessible Screen Reader Fallback */}
-      <span className="sr-only">nived - Digital Innovation & Studio Brand</span>
+      {/* 6. Accessible Screen Reader Fallback */}
+      <span className="sr-only">
+        nived brand logo showcase with interactive style variations and pixel glitch
+      </span>
     </div>
   );
 }
