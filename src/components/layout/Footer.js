@@ -56,11 +56,11 @@ export function Footer() {
       {/* 2. Middle Navigation Directory Grid */}
       <section
         aria-label="Navigation Directory"
-        className="relative w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 py-6 sm:py-8 lg:py-10 shrink-0"
+        className="relative w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 pt-48 sm:pt-44 pb-6 sm:pb-8 lg:pb-10 shrink-0"
       >
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 lg:gap-12">
           {/* Logo & Identity (Takes 2 cols on desktop) */}
-          <div className="col-span-2 flex flex-col justify-between pr-0 md:pr-6">
+          <div className="col-span-2 flex flex-col pr-0 md:pr-6">
             <div className="flex flex-col gap-4">
               {/* Minimalist nived Logo Badge matching TRAE aesthetic */}
               <Link
