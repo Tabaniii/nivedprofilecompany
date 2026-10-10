@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { profile } from "@/lib/data/profile";
 import { Button } from "@/components/ui/Button";
+import Image from "next/image";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,9 +24,16 @@ export function Navbar() {
             className="group flex items-center gap-2.5 rounded-full py-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
             aria-label={`${profile.name} - Home`}
           >
-            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-black font-bold text-xs tracking-tight transition-transform duration-200 group-hover:scale-105">
-              {profile.name.charAt(0)}
-            </span>
+            <div className="relative flex h-7 w-7 items-center justify-center overflow-hidden rounded-full transition-transform duration-200 group-hover:scale-105">
+              <Image
+                src="/Frame 8.png"
+                alt={profile.name}
+                width={28}
+                height={28}
+                className="h-full w-full object-cover"
+                priority
+              />
+            </div>
             <span className="text-sm font-semibold tracking-tight text-white transition-colors">
               {profile.name}
               <span className="text-blue-400">.</span>
