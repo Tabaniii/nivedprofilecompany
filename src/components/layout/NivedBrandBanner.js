@@ -487,7 +487,7 @@ export function NivedBrandBanner() {
       onPointerDown={handlePointerDown}
       onPointerEnter={handlePointerEnter}
       onPointerLeave={handlePointerLeave}
-      className="relative w-full h-[180px] sm:h-[240px] md:h-[320px] lg:h-[400px] xl:h-[460px] bg-[#0A0A0A] overflow-hidden select-none cursor-pointer touch-none group"
+      className="relative w-full h-full flex-grow bg-[#0A0A0A] overflow-hidden select-none cursor-pointer touch-none group"
       role="button"
       tabIndex={0}
       aria-label={`nived brand showcase. Currently style: ${currentVariation.name}. Click to cycle variations.`}

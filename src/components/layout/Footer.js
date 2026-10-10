@@ -50,63 +50,13 @@ export function Footer() {
     <footer
       id="contact"
       aria-label="Footer"
-      className="relative w-full bg-[#0A0A0A] text-white selection:bg-white/20 selection:text-white border-t border-white/[0.08] overflow-hidden"
+      className="relative w-full h-screen flex flex-col justify-between bg-[#0A0A0A] text-white selection:bg-white/20 selection:text-white border-t border-white/[0.08] overflow-hidden"
     >
-      {/* 1. Pre-Footer Call to Action (CTA) */}
-      <section
-        aria-label="Get Started Banner"
-        className="relative w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 pt-16 sm:pt-20 lg:pt-24 pb-16 sm:pb-20 border-b border-white/[0.08]"
-      >
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 lg:gap-12">
-          {/* Left: Big bold headline + subheading */}
-          <div className="flex flex-col">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.08]">
-              Get Started with nived
-            </h2>
-            <p className="mt-2.5 sm:mt-3 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-zinc-400 tracking-tight">
-              Try it for Free
-            </p>
-          </div>
-
-          {/* Right: High-contrast neon green accent button */}
-          <div className="flex items-center shrink-0">
-            <a
-              href="#download"
-              id="cta-download-btn"
-              className="group relative inline-flex items-center justify-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-white hover:bg-zinc-200 text-[#000000] font-bold text-sm sm:text-base tracking-tight transition-all duration-300 shadow-[0_0_24px_rgba(255,255,255,0.15)] hover:shadow-[0_0_35px_rgba(255,255,255,0.25)] hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A0A]"
-            >
-              {/* Apple / OS icon */}
-              <svg
-                className="w-4 h-4 sm:w-5 sm:h-5 fill-current"
-                viewBox="0 0 170 170"
-                aria-hidden="true"
-              >
-                <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.08-7.6-7.8-11.71-14.15-5.91-9.15-10.42-19.67-13.53-31.57-3.11-11.9-4.67-23.17-4.67-33.8 0-14.54 3.65-26.79 10.96-36.75 7.31-9.96 16.59-15.02 27.84-15.18 4.91 0 10.58 1.41 17.02 4.23 6.43 2.82 10.44 4.3 12.02 4.43 1.34 0 5.46-1.57 12.35-4.71 6.89-3.14 12.59-4.52 17.1-4.14 12.54 1.07 22.42 5.92 29.64 14.55-10.96 6.64-16.33 15.82-16.1 27.53.22 9.25 3.82 17.06 10.79 23.44 6.97 6.38 15.22 10.15 24.76 11.31-2.23 6.97-5.04 13.6-8.42 19.88zM119.22 33.15c0-7.23 2.65-13.97 7.95-20.21 5.3-6.24 11.79-10.3 19.46-12.18.33 1.22.49 2.37.49 3.44 0 7.12-2.8 14.03-8.4 20.73-5.61 6.7-12.35 10.76-20.23 12.18-.33-1.34-.5-2.66-.5-3.96z" />
-              </svg>
-              <span>Download nived</span>
-              {/* Right Arrow Icon */}
-              <svg
-                className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:translate-x-1"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <line x1="5" y1="12" x2="19" y2="12" />
-                <polyline points="12 5 19 12 12 19" />
-              </svg>
-            </a>
-          </div>
-        </div>
-      </section>
 
       {/* 2. Middle Navigation Directory Grid */}
       <section
         aria-label="Navigation Directory"
-        className="relative w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 py-12 sm:py-16"
+        className="relative w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 py-6 sm:py-8 lg:py-10 shrink-0"
       >
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 lg:gap-12">
           {/* Logo & Identity (Takes 2 cols on desktop) */}
@@ -174,7 +124,7 @@ export function Footer() {
       {/* 3. Sub-footer Utility Bar */}
       <section
         aria-label="Footer Utilities"
-        className="relative w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 py-6 border-t border-white/[0.08]"
+        className="relative w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 py-4 sm:py-5 border-t border-white/[0.08] shrink-0 z-10"
       >
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-400 font-normal">
           {/* Left: Copyright & Trust Badge */}
@@ -281,7 +231,7 @@ export function Footer() {
       </section>
 
       {/* 4. Bottom Massive Brand Graphic (Signature TRAE Element) */}
-      <section aria-label="Brand Banner" className="w-full">
+      <section aria-label="Brand Banner" className="w-full flex-grow flex flex-col min-h-0">
         <NivedBrandBanner />
       </section>
     </footer>
