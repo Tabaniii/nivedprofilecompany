@@ -1,24 +1,24 @@
 <svg width="562" height="508" viewBox="0 0 562 508" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g filter="url(#filter0_di_125_2)">
+<g filter="url(#filter0_di_143_2)">
 <rect x="90.9976" y="67" width="380" height="372" rx="50" fill="white"/>
 </g>
 <path d="M530.998 0C530.998 105.825 376.428 530.131 297.172 228.492C217.916 -73.1477 29.0413 446.342 31.0129 506" stroke="#2A53E7" stroke-width="62"/>
 <defs>
-<filter id="filter0_di_125_2" x="54.9976" y="55" width="452" height="444" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<filter id="filter0_di_143_2" x="54.9976" y="55" width="452" height="444" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-<feMorphology radius="12" operator="erode" in="SourceAlpha" result="effect1_dropShadow_125_2"/>
+<feMorphology radius="12" operator="erode" in="SourceAlpha" result="effect1_dropShadow_143_2"/>
 <feOffset dy="24"/>
 <feGaussianBlur stdDeviation="24"/>
 <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.0784314 0"/>
-<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_125_2"/>
-<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_125_2" result="shape"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_143_2"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_143_2" result="shape"/>
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
 <feOffset dy="-2"/>
 <feGaussianBlur stdDeviation="5"/>
 <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
 <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.0509804 0"/>
-<feBlend mode="normal" in2="shape" result="effect2_innerShadow_125_2"/>
+<feBlend mode="normal" in2="shape" result="effect2_innerShadow_143_2"/>
 </filter>
 </defs>
 </svg>

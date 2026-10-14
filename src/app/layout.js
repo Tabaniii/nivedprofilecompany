@@ -38,6 +38,10 @@ export const metadata = {
     title: `${profile.name} — ${profile.title}`,
     description: profile.tagline,
   },
+  icons: {
+    icon: "/logofix.svg",
+    apple: "/logofix.svg",
+  },
 };
 
 export default function RootLayout({ children }) {

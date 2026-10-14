@@ -539,15 +539,6 @@ export function NivedBrandBanner() {
         aria-hidden="true"
       />
 
-      {/* 5. Bottom-Right Interactive Affordance Tag */}
-      <div
-        className={`absolute bottom-3 right-4 sm:bottom-4 sm:right-6 pointer-events-none transition-all duration-300 flex items-center gap-2 px-2.5 py-1 rounded-md bg-white/10 border border-white/10 backdrop-blur-sm text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider text-white ${
-          isHovered ? "opacity-95 translate-y-0" : "opacity-60 translate-y-0.5"
-        }`}
-      >
-        <span className="inline-block w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-        <span>Click to Morph Variation ↻</span>
-      </div>
 
       {/* 6. Accessible Screen Reader Fallback */}
       <span className="sr-only">

@@ -24,13 +24,13 @@ export function Navbar() {
             className="group flex items-center gap-2.5 rounded-full py-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
             aria-label={`${profile.name} - Home`}
           >
-            <div className="relative flex h-7 w-7 items-center justify-center overflow-hidden rounded-full transition-transform duration-200 group-hover:scale-105">
+            <div className="relative flex h-8 w-8 items-center justify-center transition-transform duration-200 group-hover:scale-105">
               <Image
-                src="/Frame 8.png"
-                alt={profile.name}
-                width={28}
-                height={28}
-                className="h-full w-full object-cover"
+                src="/logofix.svg"
+                alt={`${profile.name} Logo`}
+                width={32}
+                height={32}
+                className="h-full w-full object-contain drop-shadow-sm"
                 priority
               />
             </div>

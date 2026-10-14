@@ -10,7 +10,7 @@ export const profile = {
     status: "Accepting New Projects",
     badge: "Digital Solutions Studio",
   },
-  avatar: "/icon.png",
+  avatar: "/logofix.svg",
   stats: [
     { label: "Active Deployments", value: "500+" },
     { label: "Interactions Handled", value: "2.4M+" },
