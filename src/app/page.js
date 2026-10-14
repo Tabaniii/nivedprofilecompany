@@ -5,8 +5,11 @@ import { About } from "@/components/sections/About";
 import { Skills } from "@/components/sections/Skills";
 import { Projects } from "@/components/sections/Projects";
 import { Contact } from "@/components/sections/Contact";
+import { getProjects } from "@/lib/server/projects";
 
-export default function Home() {
+export default async function Home() {
+  const projects = await getProjects();
+
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground selection:bg-blue-500/20 selection:text-blue-500">
       <Navbar />
@@ -14,7 +17,7 @@ export default function Home() {
         <Hero />
         <About />
         <Skills />
-        <Projects />
+        <Projects items={projects} />
         <Contact />
       </main>
       <Footer />

@@ -5,7 +5,9 @@ import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 
-export function Projects() {
+export function Projects({ items }) {
+  const projectList = items && items.length > 0 ? items : projects;
+
   return (
     <section
       id="projects"
@@ -31,7 +33,7 @@ export function Projects() {
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-          {projects.map((project) => (
+          {projectList.map((project) => (
             <Card
               key={project.id}
               className="flex flex-col overflow-hidden p-0 border border-zinc-800 bg-zinc-900/60"
