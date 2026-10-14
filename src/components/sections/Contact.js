@@ -4,11 +4,15 @@ import { useState } from "react";
 import { profile } from "@/lib/data/profile";
 import { Container } from "@/components/ui/Container";
 import { Card } from "@/components/ui/Card";
-import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 
 export function Contact() {
   const [copied, setCopied] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [website, setWebsite] = useState("");
+  const [status, setStatus] = useState("idle");
+  const [feedback, setFeedback] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
 
@@ -25,12 +29,35 @@ export function Contact() {
     }
   };
 
-  const handleMailto = (e) => {
-    e.preventDefault();
-    const mailtoUrl = `mailto:${emailAddress}?subject=${encodeURIComponent(
-      subject || "Project Inquiry"
-    )}&body=${encodeURIComponent(message)}`;
-    window.location.href = mailtoUrl;
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (status === "sending") return;
+    setStatus("sending");
+    setFeedback("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, subject, message, website }),
+      });
+      const result = await response.json();
+      if (!response.ok) {
+        throw new Error(result.error || "We couldn’t send your message. Please try again.");
+      }
+      setStatus("success");
+      setFeedback("Thanks for reaching out! Your message has been sent to our team.");
+      setName("");
+      setEmail("");
+      setSubject("");
+      setMessage("");
+      setWebsite("");
+    } catch (error) {
+      setStatus("error");
+      setFeedback(error instanceof TypeError
+        ? "Connection interrupted. Please try again or email us directly."
+        : error.message);
+    }
   };
 
   return (
@@ -42,9 +69,6 @@ export function Contact() {
       <Container>
         {/* Section Header */}
         <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-16">
-          <Badge variant="brand" size="md" className="mb-3">
-            Merchant Consultation
-          </Badge>
           <h2
             id="contact-heading"
             className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
@@ -112,10 +136,24 @@ export function Contact() {
                 Send a Message
               </h3>
               <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-6">
-                Compose a message directly. Submitting will launch your default email client with your text prefilled.
+                Tell us what you have in mind. We’ll reply to the email address you provide.
               </p>
 
-              <form onSubmit={handleMailto} className="flex flex-col gap-4">
+              <form onSubmit={handleSubmit} className="flex flex-col gap-4" aria-busy={status === "sending"}>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="contact-name" className="block text-xs font-semibold text-zinc-700 dark:text-zinc-300 mb-1.5">Name</label>
+                    <input id="contact-name" name="name" autoComplete="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Your name" required maxLength={100} disabled={status === "sending"} className="w-full rounded-xl border border-zinc-200 bg-background px-4 py-2.5 text-sm text-foreground placeholder-zinc-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900" />
+                  </div>
+                  <div>
+                    <label htmlFor="contact-email" className="block text-xs font-semibold text-zinc-700 dark:text-zinc-300 mb-1.5">Email address</label>
+                    <input id="contact-email" name="email" type="email" autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@company.com" required maxLength={254} disabled={status === "sending"} className="w-full rounded-xl border border-zinc-200 bg-background px-4 py-2.5 text-sm text-foreground placeholder-zinc-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-900" />
+                  </div>
+                </div>
+                <div className="hidden" aria-hidden="true">
+                  <label htmlFor="contact-website">Website</label>
+                  <input id="contact-website" name="website" tabIndex={-1} autoComplete="off" value={website} onChange={(e) => setWebsite(e.target.value)} />
+                </div>
                 <div>
                   <label
                     htmlFor="contact-subject"
@@ -125,6 +163,9 @@ export function Contact() {
                   </label>
                   <input
                     id="contact-subject"
+                    name="subject"
+                    maxLength={200}
+                    disabled={status === "sending"}
                     type="text"
                     value={subject}
                     onChange={(e) => setSubject(e.target.value)}
@@ -143,6 +184,9 @@ export function Contact() {
                   </label>
                   <textarea
                     id="contact-message"
+                    name="message"
+                    maxLength={5000}
+                    disabled={status === "sending"}
                     rows={4}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
@@ -152,14 +196,18 @@ export function Contact() {
                   />
                 </div>
 
+                <p role={status === "error" ? "alert" : "status"} aria-live="polite" className={`text-sm ${status === "error" ? "text-red-600 dark:text-red-400" : "text-emerald-600 dark:text-emerald-400"}`}>
+                  {feedback}
+                </p>
                 <div className="pt-2">
                   <Button
                     type="submit"
+                    disabled={status === "sending"}
                     variant="primary"
                     size="md"
                     className="w-full sm:w-auto"
                   >
-                    Send Message via Email
+                    {status === "sending" ? "Sending…" : "Send Message"}
                     <svg
                       className="h-4 w-4"
                       fill="none"
