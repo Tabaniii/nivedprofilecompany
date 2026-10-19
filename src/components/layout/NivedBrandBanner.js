@@ -189,7 +189,7 @@ export function NivedBrandBanner() {
     if (!ctx) return;
     const BRAND_BG = "#0A0A0A";
     const BRAND_TEXT = "#FFFFFF";
-    const BRAND_ACCENT = "#A855F7";
+    const BRAND_ACCENT = "#0080FF";
 
     const updateSize = () => {
       const rect = container.getBoundingClientRect();
@@ -374,7 +374,7 @@ export function NivedBrandBanner() {
     const { width, blocks, mouse } = stateRef.current;
     const BRAND_BG = "#0A0A0A";
     const BRAND_TEXT = "#FFFFFF";
-    const BRAND_ACCENT = "#A855F7";
+    const BRAND_ACCENT = "#0080FF";
 
     const sizes = width < 640 ? [8, 12] : [10, 14, 18, 24];
 

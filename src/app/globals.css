@@ -2,6 +2,20 @@
 
 @theme {
   --color-brand-red: #e11d48;
+  --animate-marquee: marquee 28s linear infinite;
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+@theme inline {
+  --font-display: var(--font-space-grotesk), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-bricolage: var(--font-bricolage-grotesque), system-ui, sans-serif;
+  --font-newsreader: var(--font-newsreader-serif), Georgia, serif;
 }
 
 :root {
@@ -49,4 +63,63 @@ body {
 
 .line-length-control {
   max-width: 46ch;
+}
+
+/* Make it known: block field */
+.mik-cell {
+  display: block;
+  background: var(--c, transparent);
+  transition: background 1.6s ease-out;
+}
+
+.mik-on {
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+.is-live .mik-on {
+  animation: mik-pop 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: var(--d, 0s);
+}
+
+.mik-cell.is-lit {
+  background: #2a53e7;
+  transition: none;
+}
+
+@keyframes mik-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Make it known: scroll-linked word reveal */
+.mik-word {
+  opacity: clamp(0.14, calc(var(--p, 0) * var(--n) - var(--i)), 1);
+  transition: opacity 0.2s linear;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mik-on {
+    opacity: 1;
+    transform: none;
+  }
+  .is-live .mik-on {
+    animation: none;
+  }
+  .mik-cell {
+    transition-duration: 0.01s;
+  }
+  .mik-word {
+    opacity: 1;
+  }
+  .mik-line {
+    transform: none !important;
+    transition: none !important;
+  }
 }

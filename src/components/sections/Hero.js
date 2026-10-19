@@ -1,104 +1,118 @@
-"use client";
+import { KeyCharm } from "@/components/ui/KeyCharm";
 
-import { profile } from "@/lib/data/profile";
-import { Container } from "@/components/ui/Container";
-import Threads from "@/components/ui/Threads";
+const SERVICES = [
+  "Branding",
+  "Websites",
+  "Systems",
+  "Research",
+  "Keyrings",
+  "Make it known",
+];
+
+function Doodles({ className = "" }) {
+  return (
+    <svg
+      viewBox="0 0 84 74"
+      fill="none"
+      stroke="#2A53E7"
+      strokeWidth="2.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <circle cx="22" cy="9" r="4" />
+      <path d="M18 10 3 14M8 13l1.5 4" />
+      <path d="M66 3l3.5 9.5L79 16l-9.5 3.5L66 29l-3.5-9.5L53 16l9.5-3.5z" />
+      <path d="M37 30h9v9M35 35v9h9" />
+      <path d="M11 64C1 56 3 47 8 47c2 0 3 1.5 3 3 0-1.5 1-3 3-3 5 0 7 9-3 17z" />
+      <path d="M60 51l12-3 2 13-6 8-6-7z" />
+    </svg>
+  );
+}
 
 export function Hero() {
   return (
     <section
       id="top"
       aria-labelledby="hero-heading"
-      className="relative isolate h-screen h-[100dvh] w-full flex flex-col items-center justify-center overflow-hidden bg-[#070709] text-white"
+      className="relative w-full bg-[#0e0e12] pt-14 text-[#F2F1EE]"
     >
-      {/* Threads Canvas Background Effect */}
-      <div className="absolute inset-0 z-0 w-full h-full pointer-events-none">
-        <Threads
-          color="#ffffff"
-          lineCount={90}
-          thickness={0.6}
-          softness={1.3}
-          amplitude={1.7}
-          distance={0.4}
-          waves={1.05}
-          speed={0.6}
-          split={0.04}
-          fray={0.5}
-          angle={25}
-          taper={0.85}
-          brightness={1.4}
-          parting={0.25}
-          enableMouseInteraction={true}
-          fade={0}
-          opacity={1}
-        />
+      <div className="border-b border-white/10">
+        <div className="mx-auto flex min-h-[calc(100dvh-3.5rem)] max-w-6xl flex-col border-x border-white/10">
+          <div className="grid flex-1 grid-cols-1 lg:grid-cols-2">
+            <div className="relative flex flex-col justify-center px-6 py-16 sm:px-10 lg:py-24">
+              <Doodles className="absolute right-6 top-6 w-20 sm:right-10 sm:w-24" />
+
+              <h1
+                id="hero-heading"
+                className="font-display text-5xl font-bold leading-[1.02] tracking-tight sm:text-6xl"
+              >
+                A small team that makes things people keep.
+              </h1>
+
+              <p className="mt-8 max-w-md font-mono text-sm leading-relaxed text-zinc-400">
+                Branding, websites and the systems behind them. Three people,
+                one keyring, and a habit of finishing what we clip on, Make It
+                known, Everyone will know us.
+              </p>
+
+              <div className="mt-8 flex flex-wrap items-center gap-3">
+                <a
+                  href="#contact"
+                  className="inline-flex items-center justify-center rounded-full bg-[#F2F1EE] px-6 py-2.5 font-mono text-sm font-medium text-zinc-950 transition hover:bg-white active:scale-[0.98]"
+                >
+                  Contact US
+                </a>
+                <a
+                  href="#projects"
+                  className="inline-flex items-center justify-center rounded-full border border-[#F2F1EE]/80 px-6 py-2.5 font-mono text-sm font-medium text-[#F2F1EE] transition hover:bg-white/10 active:scale-[0.98]"
+                >
+                  See what we make
+                </a>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-center border-t border-white/10 px-6 py-16 lg:border-l lg:border-t-0">
+              <KeyCharm className="w-full max-w-[300px] lg:max-w-[400px]" />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 border-t border-white/10 font-mono text-xs lg:grid-cols-2">
+            <div className="relative flex h-12 items-center overflow-hidden border-b border-white/10 lg:border-b-0">
+              <div className="flex w-max animate-marquee motion-reduce:animate-none">
+                {[0, 1].map((copy) => (
+                  <ul
+                    key={copy}
+                    aria-hidden={copy === 1}
+                    className="flex shrink-0 items-center gap-6 pr-6 uppercase tracking-widest text-zinc-500"
+                  >
+                    {SERVICES.map((service) => (
+                      <li key={service} className="flex items-center gap-6">
+                        <span>{service}</span>
+                        <span className="text-[#2A53E7]" aria-hidden="true">
+                          ✦
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                ))}
+              </div>
+              <div className="pointer-events-none absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-[#0e0e12] to-transparent" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-[#0e0e12] to-transparent" />
+            </div>
+
+            <div className="flex h-12 items-center justify-between gap-4 px-6 sm:px-10 lg:border-l lg:border-white/10">
+              <p className="truncate text-zinc-400">
+                Nived. We design, create, develop and research.
+              </p>
+              <p className="shrink-0 font-semibold tracking-wider text-[#F2F1EE]">
+                © 2026 NIVED
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
-
-      {/* Gentle bottom gradient fade into next section */}
-      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background to-transparent pointer-events-none z-[1]" />
-
-      {/* Main Centered Proportional Content */}
-      <Container className="relative z-10 flex flex-col items-center text-center max-w-4xl px-4 my-auto pt-12">
-        {/* Badge: Digital Solutions & Innovation Studio */}
-        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 py-1.5 px-4 text-[10px] sm:text-xs font-semibold tracking-wider uppercase text-zinc-200 backdrop-blur-md shadow-xs transition-transform duration-200 hover:scale-[1.02]">
-          <span className="inline-block h-1.5 w-1.5 rounded-full bg-white animate-pulse" />
-          <span>DIGITAL SOLUTIONS • TECH &amp; INNOVATION STUDIO</span>
-        </div>
-
-        {/* Main Headline (H1) */}
-        <h1
-          id="hero-heading"
-          className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.14] drop-shadow-sm max-w-4xl"
-        >
-          Architecting Scalable Digital Solutions
-          <br className="hidden sm:inline" />{" "}
-          <span className="text-zinc-300 font-medium">
-            for Modern Businesses
-          </span>
-        </h1>
-
-        {/* Subheadline Paragraph */}
-        <p className="mt-5 text-sm sm:text-base text-zinc-400 max-w-2xl mx-auto leading-relaxed">
-          {profile.tagline}
-        </p>
-
-        {/* CTA Buttons */}
-        <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
-          <a
-            href="#projects"
-            className="inline-flex items-center justify-center rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-zinc-950 transition-all hover:bg-zinc-200 shadow-md shadow-white/5 active:scale-[0.98]"
-          >
-            Explore Solutions
-          </a>
-          <a
-            href="#contact"
-            className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-6 py-2.5 text-sm font-medium text-zinc-200 backdrop-blur-md transition-all hover:bg-white/10 hover:text-white active:scale-[0.98]"
-          >
-            Book a Consultation
-          </a>
-        </div>
-      </Container>
-
-      {/* Subtle Bottom Scroll Indicator */}
-      <a
-        href="#about"
-        className="absolute bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-2 text-xs text-zinc-500 hover:text-zinc-300 transition-colors z-10 select-none group"
-        aria-label="Scroll to overview section"
-      >
-        <span className="text-[10px] tracking-widest uppercase font-medium text-zinc-500 group-hover:text-zinc-400">
-          Scroll to explore
-        </span>
-        <svg
-          className="h-3.5 w-3.5 text-zinc-400 animate-bounce"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth="2"
-          aria-hidden="true"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-        </svg>
-      </a>
     </section>
   );
 }

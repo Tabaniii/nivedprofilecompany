@@ -1,7 +1,6 @@
 export const profile = {
   name: "Nived",
   fullName: "Nived Studio",
-  title: "Digital Solutions & Tech Innovation Studio",
   tagline:
     "We empower growing businesses and brands through end-to-end digital solutions—combining bespoke web platforms, intelligent offline-to-online marketing touchpoints, and scalable systems designed to drive real growth.",
   bio: "We are an end-to-end digital partner delivering custom software, intelligent marketing touchpoints (including smart NFC ecosystems), and business process automation to accelerate modern business growth.",
@@ -18,11 +17,16 @@ export const profile = {
     { label: "Platform Uptime", value: "99.98%" },
   ],
   navLinks: [
+    { label: "Home", href: "#top" },
     { label: "Overview", href: "#about" },
-    { label: "Capabilities", href: "#skills" },
-    { label: "Solutions", href: "#projects" },
-    { label: "Consultation", href: "#contact" },
+    { label: "Products", href: "#projects" },
+    { label: "Pricing", href: "#skills" },
+    { label: "Make It Known", href: "#contact" },
   ],
+  community: {
+    instagram: "https://instagram.com",
+    discord: "https://discord.com",
+  },
   socials: [
     {
       name: "GitHub",

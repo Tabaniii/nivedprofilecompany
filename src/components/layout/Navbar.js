@@ -2,73 +2,168 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { profile } from "@/lib/data/profile";
-import { Button } from "@/components/ui/Button";
 import Image from "next/image";
+import { profile } from "@/lib/data/profile";
+
+const cell =
+  "flex h-full items-center justify-center border-l border-white/10 text-[#F2F1EE] transition-colors hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#2A53E7]";
+
+const TAPE_CLIP =
+  "polygon(0 10%, 4% 0, 50% 6%, 96% 0, 100% 10%, 97% 30%, 100% 50%, 97% 70%, 100% 90%, 96% 100%, 50% 94%, 4% 100%, 0 90%, 3% 70%, 0 50%, 3% 30%)";
+
+function InstagramIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className="h-6 w-6"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      aria-hidden="true"
+    >
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+function DiscordIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className="h-5 w-5"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path d="M19.27 5.33A16.6 16.6 0 0 0 15.1 4l-.2.4a15.3 15.3 0 0 1 3.7 1.2 14.2 14.2 0 0 0-13.2 0A15.3 15.3 0 0 1 9.1 4.4L8.9 4a16.6 16.6 0 0 0-4.17 1.33C2.1 9.2 1.4 13 1.75 16.75A16.8 16.8 0 0 0 6.85 19.3l1.1-1.5a10.8 10.8 0 0 1-1.7-.82l.42-.32a11.9 11.9 0 0 0 10.66 0l.42.32c-.54.32-1.1.6-1.7.82l1.1 1.5a16.8 16.8 0 0 0 5.1-2.55c.42-4.35-.7-8.12-2.98-11.42ZM8.5 14.5c-1 0-1.8-.92-1.8-2.05S7.5 10.4 8.5 10.4s1.82.93 1.8 2.05c0 1.13-.8 2.05-1.8 2.05Zm7 0c-1 0-1.8-.92-1.8-2.05s.8-2.05 1.8-2.05 1.82.93 1.8 2.05c0 1.13-.8 2.05-1.8 2.05Z" />
+    </svg>
+  );
+}
+
+function ThemeIcon({ dark }) {
+  return dark ? (
+    <svg
+      viewBox="0 0 24 24"
+      className="h-4 w-4"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5Z" />
+    </svg>
+  ) : (
+    <svg
+      viewBox="0 0 24 24"
+      className="h-4 w-4"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      aria-hidden="true"
+    >
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+    </svg>
+  );
+}
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDark, setIsDark] = useState(true);
 
   const closeMenu = () => setIsOpen(false);
 
+  const toggleTheme = () => {
+    const next = !isDark;
+    setIsDark(next);
+    document.documentElement.classList.toggle("dark", next);
+  };
+
   return (
-    <header className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
-      <div className="w-full max-w-4xl pointer-events-auto">
-        <nav
-          className="flex items-center justify-between rounded-full border border-white/10 bg-zinc-950/70 px-5 py-2.5 shadow-xl shadow-black/40 backdrop-blur-xl transition-all duration-300"
-          aria-label="Main navigation"
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#0e0e12]/95 backdrop-blur-md">
+      <nav
+        className="relative flex h-14 items-stretch"
+        aria-label="Main navigation"
+      >
+        <Link
+          href="#top"
+          className="flex w-[72px] shrink-0 items-center justify-center border-r border-white/10 transition-colors hover:bg-white/5"
+          aria-label={`${profile.name} - Home`}
         >
-          {/* Logo */}
-          <Link
-            href="#top"
-            className="group flex items-center gap-2.5 rounded-full py-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
-            aria-label={`${profile.name} - Home`}
-          >
-            <div className="relative flex h-8 w-8 items-center justify-center transition-transform duration-200 group-hover:scale-105">
-              <Image
-                src="/logofix.svg"
-                alt={`${profile.name} Logo`}
-                width={32}
-                height={32}
-                className="h-full w-full object-contain drop-shadow-sm"
-                priority
-              />
-            </div>
-            <span className="text-sm font-semibold tracking-tight text-white transition-colors">
-              {profile.name}
-              <span className="text-blue-400">.</span>
-            </span>
-          </Link>
+          <Image
+            src="/Flowing line.svg"
+            alt=""
+            width={42}
+            height={29}
+            priority
+          />
+        </Link>
 
-          {/* Desktop Nav Links */}
-          <div className="hidden md:flex items-center gap-1">
+        <div className="relative flex flex-1 items-center">
+          <ul className="hidden items-center gap-4 px-5 xl:flex 2xl:gap-7">
             {profile.navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="inline-flex items-center px-3.5 py-1.5 text-xs font-medium text-zinc-400 transition-colors hover:text-white rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
-              >
-                {link.label}
-              </a>
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  className="py-1.5 font-mono text-[11px] uppercase tracking-wide text-zinc-300 transition-colors hover:text-white 2xl:text-xs"
+                >
+                  {link.label}
+                </a>
+              </li>
             ))}
-          </div>
+          </ul>
 
-          {/* Right Action / Contact Button */}
-          <div className="hidden md:flex items-center">
-            <Button
-              href="#contact"
-              size="sm"
-              className="rounded-full bg-white text-zinc-950 hover:bg-zinc-200 font-semibold text-xs px-4 py-1.5 shadow-xs"
+          <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+            <span
+              style={{ clipPath: TAPE_CLIP }}
+              className="block -rotate-2 bg-[#F2F1EE] px-8 py-1.5 font-mono text-xs font-bold tracking-widest text-zinc-950"
             >
-              Contact Me
-            </Button>
+              {profile.name.toUpperCase()}
+            </span>
           </div>
+        </div>
 
-          {/* Mobile Menu Toggle Button */}
+        <div className="flex items-stretch">
+          <a
+            href={profile.community.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`${cell} hidden w-14 sm:flex`}
+            aria-label="Instagram"
+          >
+            <InstagramIcon />
+          </a>
+          <a
+            href={profile.community.discord}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`${cell} hidden w-14 sm:flex`}
+            aria-label="Discord"
+          >
+            <DiscordIcon />
+          </a>
+          <button
+            type="button"
+            onClick={toggleTheme}
+            className={`${cell} w-14`}
+            aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+          >
+            <ThemeIcon dark={isDark} />
+          </button>
+          <a
+            href="#contact"
+            className="hidden items-center bg-[#F2F1EE] px-10 font-mono text-xs font-bold uppercase tracking-wide text-zinc-950 transition-colors hover:bg-white md:flex"
+          >
+            Contact Us
+          </a>
           <button
             type="button"
             onClick={() => setIsOpen(!isOpen)}
-            className="flex md:hidden h-8 w-8 items-center justify-center rounded-full border border-white/10 p-1.5 text-zinc-300 transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className={`${cell} w-14 xl:hidden`}
             aria-expanded={isOpen}
             aria-controls="mobile-menu"
             aria-label="Toggle navigation menu"
@@ -96,39 +191,38 @@ export function Navbar() {
               )}
             </svg>
           </button>
-        </nav>
+        </div>
+      </nav>
 
-        {/* Mobile Dropdown Menu */}
-        {isOpen && (
-          <div
-            id="mobile-menu"
-            className="md:hidden mt-2 rounded-2xl border border-white/10 bg-zinc-950/95 p-4 shadow-2xl backdrop-blur-xl animate-in fade-in slide-in-from-top-2 duration-200"
-          >
-            <div className="flex flex-col gap-1">
-              {profile.navLinks.map((link) => (
+      {isOpen && (
+        <div
+          id="mobile-menu"
+          className="border-t border-white/10 bg-[#0e0e12] xl:hidden"
+        >
+          <ul className="flex flex-col">
+            {profile.navLinks.map((link) => (
+              <li key={link.href} className="border-b border-white/10">
                 <a
-                  key={link.href}
                   href={link.href}
                   onClick={closeMenu}
-                  className="flex min-h-[40px] items-center rounded-xl px-4 text-sm font-medium text-zinc-300 transition-colors hover:bg-white/10 hover:text-white"
+                  className="flex min-h-[48px] items-center px-6 font-mono text-xs uppercase tracking-wider text-zinc-300 transition-colors hover:bg-white/5 hover:text-[#F2F1EE]"
                 >
                   {link.label}
                 </a>
-              ))}
-              <div className="pt-2 border-t border-white/10 mt-1">
-                <Button
-                  href="#contact"
-                  size="md"
-                  className="w-full rounded-xl bg-white text-black hover:bg-zinc-200 font-semibold text-xs"
-                  onClick={closeMenu}
-                >
-                  Contact Me
-                </Button>
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
+              </li>
+            ))}
+            <li className="md:hidden">
+              <a
+                href="#contact"
+                onClick={closeMenu}
+                className="flex min-h-[48px] items-center justify-center bg-[#F2F1EE] font-mono text-xs font-semibold uppercase tracking-wider text-zinc-950"
+              >
+                Contact Us
+              </a>
+            </li>
+          </ul>
+        </div>
+      )}
     </header>
   );
 }

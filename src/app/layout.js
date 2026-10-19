@@ -1,4 +1,10 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import {
+  Geist,
+  Geist_Mono,
+  Space_Grotesk,
+  Bricolage_Grotesque,
+  Newsreader,
+} from "next/font/google";
 import "./globals.css";
 import { SkipToContent } from "@/components/layout/SkipToContent";
 import { profile } from "@/lib/data/profile";
@@ -10,6 +16,21 @@ const geistSans = Geist({
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
+  subsets: ["latin"],
+});
+
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-bricolage-grotesque",
+  subsets: ["latin"],
+});
+
+const newsreader = Newsreader({
+  variable: "--font-newsreader-serif",
   subsets: ["latin"],
 });
 
@@ -48,7 +69,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`dark ${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`dark ${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${bricolage.variable} ${newsreader.variable} h-full antialiased`}
     >
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
