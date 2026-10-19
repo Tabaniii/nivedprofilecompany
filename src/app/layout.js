@@ -2,9 +2,9 @@ import {
   Geist,
   Geist_Mono,
   Space_Grotesk,
-  Bricolage_Grotesque,
   Newsreader,
 } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { SkipToContent } from "@/components/layout/SkipToContent";
 import { profile } from "@/lib/data/profile";
@@ -24,9 +24,10 @@ const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
 });
 
-const bricolage = Bricolage_Grotesque({
+const bricolage = localFont({
+  src: "../../public/fonts/Bricolage_Grotesque/BricolageGrotesque-VariableFont_opsz,wdth,wght.ttf",
   variable: "--font-bricolage-grotesque",
-  subsets: ["latin"],
+  display: "swap",
 });
 
 const newsreader = Newsreader({

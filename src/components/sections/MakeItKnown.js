@@ -1,37 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import {
-  ScrollSlideUp,
-  StaggerGroup,
-  StaggerItem,
-} from "@/components/layout/MotionPrimitives";
 
 const COLS = 11;
 const TONES = ["#2A53E7", "#243b8f", "#243b8f", "#1b2140"];
 const EDGE_ODDS = [0.7, 0.5, 0.28];
-
-const STATEMENT =
-  "Good work rarely speaks for itself. We design it, build it and test it, then make sure the right people find out.";
-
-const DISCIPLINES = [
-  {
-    title: "Design",
-    body: "Identities, interfaces and systems that look like one decision, not many.",
-  },
-  {
-    title: "Create",
-    body: "Campaigns, content and visual worlds that give the work something to say.",
-  },
-  {
-    title: "Develop",
-    body: "Sites and products built to ship, hold up and keep changing.",
-  },
-  {
-    title: "Research",
-    body: "Talking to people and testing early, so we know what is worth making known.",
-  },
-];
 
 function rng(seed) {
   let a = seed;
@@ -113,10 +86,12 @@ function BlockField() {
       ([entry]) => {
         if (entry.isIntersecting) {
           setLive(true);
-          observer.disconnect();
+        } else if (entry.boundingClientRect.top > window.innerHeight * 0.7) {
+          // If scrolled back up into Hero, reset so the entrance animation can replay
+          setLive(false);
         }
       },
-      { threshold: 0.25 }
+      { threshold: [0.15, 0.4] }
     );
 
     build();
@@ -136,7 +111,7 @@ function BlockField() {
   return (
     <div
       ref={fieldRef}
-      className={`relative h-[max(540px,92vh)] cursor-crosshair overflow-hidden ${
+      className={`relative h-full w-full cursor-crosshair overflow-hidden ${
         live ? "is-live" : ""
       }`}
     >
@@ -148,7 +123,7 @@ function BlockField() {
 
       <h2
         id="make-it-known-heading"
-        className="pointer-events-none absolute inset-0 m-0 grid place-content-center text-center font-bricolage text-[clamp(3rem,10.5vw,8.5rem)] font-extrabold leading-[0.92] tracking-[-0.045em]"
+        className="pointer-events-none absolute inset-0 m-0 grid place-content-center text-center font-bricolage text-[clamp(3.5rem,11vw,9rem)] font-extrabold leading-[0.92] tracking-[-0.045em]"
       >
         {["Make it", "known"].map((line, i) => (
           <span key={line} className="block overflow-hidden pb-[0.06em]">
@@ -166,7 +141,7 @@ function BlockField() {
       </h2>
 
       <p
-        className="pointer-events-none absolute inset-x-0 bottom-[calc(var(--u,0px)*3+14px)] m-0 text-center font-bricolage text-sm text-[#8d909b] transition-opacity duration-700"
+        className="pointer-events-none absolute inset-x-0 bottom-10 sm:bottom-14 m-0 text-center font-bricolage text-sm text-[#8d909b] transition-opacity duration-700"
         style={{ opacity: live ? 1 : 0, transitionDelay: "0.9s" }}
       >
         Move through the blocks to leave a mark
@@ -175,122 +150,118 @@ function BlockField() {
   );
 }
 
-function Statement() {
-  const ref = useRef(null);
-  const words = STATEMENT.split(" ");
+export function MakeItKnown() {
+  const sectionRef = useRef(null);
+  const revealRef = useRef(null);
+  const lineRef = useRef(null);
+  const glowRef = useRef(null);
 
   useEffect(() => {
-    const el = ref.current;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      el.style.setProperty("--p", "1");
-      return;
-    }
+    const section = sectionRef.current;
+    const reveal = revealRef.current;
+    const line = lineRef.current;
+    const glow = glowRef.current;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     let frame = 0;
+
     const update = () => {
       frame = 0;
+
+      if (reduce.matches) {
+        reveal.style.transform = "";
+        reveal.style.opacity = "";
+        line.style.opacity = "0";
+        glow.style.opacity = "0";
+        return;
+      }
+
       const vh = window.innerHeight;
-      const top = el.getBoundingClientRect().top;
-      const p = Math.min(1, Math.max(0, (vh * 0.9 - top) / (vh * 0.55)));
-      el.style.setProperty("--p", p.toFixed(3));
+      const rect = section.getBoundingClientRect();
+      // p goes 0→1 as the section enters the viewport from below
+      const p = Math.min(1, Math.max(0, (vh - rect.top) / vh));
+
+      // Eased progress for dramatic feel
+      const eased = p < 0.5
+        ? 4 * p * p * p
+        : 1 - Math.pow(-2 * p + 2, 3) / 2;
+
+      /* ─── Parallax lift + scale of content ─── */
+      const contentY = (1 - eased) * 50;
+      const contentScale = 0.96 + eased * 0.04;
+      reveal.style.transform = `translateY(${contentY.toFixed(1)}px) scale(${contentScale.toFixed(3)})`;
+      reveal.style.opacity = Math.min(1, 0.15 + eased * 0.85).toFixed(3);
+
+      /* ─── Luminous laser beam along leading top edge ─── */
+      const lineOpacity = p <= 0.08
+        ? p / 0.08
+        : p >= 0.95
+        ? (1 - p) / 0.05
+        : 1;
+      line.style.opacity = (lineOpacity * 0.95).toFixed(3);
+      line.style.transform = `scaleX(${0.35 + eased * 0.65})`;
+
+      /* ─── Background glow pulse ─── */
+      const glowOpacity = Math.sin(p * Math.PI);
+      glow.style.opacity = (glowOpacity * 0.55).toFixed(3);
     };
-    const onScroll = () => {
+
+    const schedule = () => {
       if (!frame) frame = requestAnimationFrame(update);
     };
 
     update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    reduce.addEventListener("change", schedule);
     return () => {
       cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      reduce.removeEventListener("change", schedule);
     };
   }, []);
 
   return (
-    <div className="border-t border-white/10 px-[6%] pb-[72px] pt-24 max-md:pb-14 max-md:pt-16">
-      <p
-        ref={ref}
-        aria-label={STATEMENT}
-        className="m-0 max-w-[24em] font-newsreader text-[clamp(1.5rem,3.2vw,2.5rem)] leading-[1.25] tracking-[-0.01em]"
-        style={{ "--n": words.length }}
-      >
-        {words.map((word, i) => (
-          <span
-            key={i}
-            aria-hidden="true"
-            className="mik-word"
-            style={{ "--i": i }}
-          >
-            {word}{" "}
-          </span>
-        ))}
-      </p>
-    </div>
-  );
-}
-
-export function MakeItKnown() {
-  return (
     <section
+      ref={sectionRef}
       id="make-it-known"
       aria-labelledby="make-it-known-heading"
-      className="relative z-10 w-full bg-[#0e0e12] text-[#F3F2EE] shadow-[0_-40px_80px_rgba(0,0,0,0.55)]"
+      className="relative z-10 w-full h-[100dvh] overflow-hidden bg-[#0e0e12] text-[#F3F2EE] shadow-[0_-30px_70px_rgba(0,0,0,0.8),0_-1px_0_rgba(255,255,255,0.12)] border-b border-white/10"
     >
-      <div className="border-y border-white/10">
-        <div className="mx-auto max-w-6xl border-x border-white/10">
-          <BlockField />
-          <Statement />
+      {/* Horizontal light-line that sweeps across during reveal */}
+      <div
+        ref={lineRef}
+        aria-hidden="true"
+        className="pointer-events-none absolute left-0 right-0 top-0 z-20 h-[2px] opacity-0"
+        style={{
+          background:
+            "linear-gradient(90deg, transparent 5%, rgba(42,83,231,0.6) 20%, rgba(255,255,255,0.9) 50%, rgba(42,83,231,0.6) 80%, transparent 95%)",
+          boxShadow:
+            "0 0 25px 8px rgba(42,83,231,0.4), 0 0 70px 25px rgba(42,83,231,0.2)",
+          transformOrigin: "center",
+        }}
+      />
 
-          <StaggerGroup
-            as="ul"
-            stagger={0.1}
-            amount={0.2}
-            className="m-0 list-none border-t border-white/10 p-0"
-          >
-            {DISCIPLINES.map(({ title, body }, i) => (
-              <StaggerItem
-                as="li"
-                key={title}
-                index={i}
-                className="group relative overflow-hidden border-b border-white/10"
-              >
-                <span
-                  aria-hidden="true"
-                  className="absolute inset-0 origin-left scale-x-0 bg-[#2A53E7] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100"
-                />
-                <div className="relative grid grid-cols-1 gap-1.5 px-[6%] py-7 md:grid-cols-[minmax(120px,1fr)_2fr] md:gap-6">
-                  <h3 className="m-0 flex items-baseline gap-3 font-bricolage text-2xl font-semibold tracking-[-0.015em] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-2">
-                    <span
-                      aria-hidden="true"
-                      className="font-mono text-xs font-normal text-[#8d909b] transition-colors duration-300 group-hover:text-white/70"
-                    >
-                      {`0${i + 1}`}
-                    </span>
-                    {title}
-                  </h3>
-                  <p className="m-0 max-w-[34em] font-newsreader text-[1.15rem] leading-normal text-[#8d909b] transition-colors duration-300 group-hover:text-white">
-                    {body}
-                  </p>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerGroup>
+      {/* Background glow that pulses during transition */}
+      <div
+        ref={glowRef}
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-10 opacity-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 90% 50% at 50% 0%, rgba(42,83,231,0.3) 0%, transparent 75%)",
+        }}
+      />
 
-          <ScrollSlideUp className="flex flex-wrap items-center justify-between gap-7 px-[6%] py-24 max-md:pb-14 max-md:pt-16">
-            <h3 className="m-0 max-w-[14em] font-bricolage text-[clamp(1.8rem,4vw,3rem)] font-bold leading-[1.05] tracking-[-0.03em]">
-              Have something people should know about?
-            </h3>
-            <a
-              href="#contact"
-              className="inline-flex items-center bg-[#2A53E7] px-[26px] py-4 font-bricolage text-base font-semibold text-white transition hover:bg-[#243b8f] focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-[#F3F2EE] active:scale-[0.98]"
-            >
-              Start a conversation
-            </a>
-          </ScrollSlideUp>
-        </div>
+      {/* Content container with parallax entry */}
+      <div
+        ref={revealRef}
+        className="relative z-10 h-full w-full will-change-[transform,opacity]"
+      >
+        <BlockField />
       </div>
     </section>
   );
 }
+

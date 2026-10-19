@@ -17,11 +17,11 @@ export const profile = {
     { label: "Platform Uptime", value: "99.98%" },
   ],
   navLinks: [
-    { label: "Home", href: "#top" },
-    { label: "Overview", href: "#about" },
-    { label: "Products", href: "#projects" },
-    { label: "Pricing", href: "#skills" },
-    { label: "Make It Known", href: "#contact" },
+    { label: "Home", href: "/#top" },
+    { label: "Overview", href: "/#about" },
+    { label: "Products", href: "/#projects" },
+    { label: "Pricing", href: "/pricing" },
+    { label: "Make It Known", href: "/#make-it-known" },
   ],
   community: {
     instagram: "https://instagram.com",

@@ -46,34 +46,35 @@ export function Hero() {
 
               <h1
                 id="hero-heading"
+                data-hero-parallax="1.2"
                 className="font-display text-5xl font-bold leading-[1.02] tracking-tight sm:text-6xl"
               >
                 A small team that makes things people keep.
               </h1>
 
-              <p className="mt-8 max-w-md font-mono text-sm leading-relaxed text-zinc-400">
+              <p data-hero-parallax="0.8" className="mt-8 max-w-md font-mono text-sm leading-relaxed text-zinc-400">
                 Branding, websites and the systems behind them. Three people,
                 one keyring, and a habit of finishing what we clip on, Make It
                 known, Everyone will know us.
               </p>
 
-              <div className="mt-8 flex flex-wrap items-center gap-3">
+              <div data-hero-parallax="0.6" className="mt-8 flex flex-wrap items-center gap-4">
                 <a
                   href="#contact"
-                  className="inline-flex items-center justify-center rounded-full bg-[#F2F1EE] px-6 py-2.5 font-mono text-sm font-medium text-zinc-950 transition hover:bg-white active:scale-[0.98]"
+                  className="inline-flex items-center justify-center border-2 border-[#F2F1EE] bg-[#F2F1EE] px-8 py-3.5 font-mono text-sm font-medium text-zinc-950 transition-colors duration-200 hover:border-white hover:bg-white active:scale-[0.98] cursor-pointer"
                 >
                   Contact US
                 </a>
                 <a
                   href="#projects"
-                  className="inline-flex items-center justify-center rounded-full border border-[#F2F1EE]/80 px-6 py-2.5 font-mono text-sm font-medium text-[#F2F1EE] transition hover:bg-white/10 active:scale-[0.98]"
+                  className="inline-flex items-center justify-center border-2 border-[#F2F1EE] bg-transparent px-8 py-3.5 font-mono text-sm font-medium text-[#F2F1EE] transition-all duration-200 hover:border-[#2A53E7] hover:bg-[#2A53E7] hover:text-white active:border-[#1f42c2] active:bg-[#1f42c2] active:text-white active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2A53E7] cursor-pointer"
                 >
                   See what we make
                 </a>
               </div>
             </div>
 
-            <div className="flex items-center justify-center border-t border-white/10 px-6 py-16 lg:border-l lg:border-t-0">
+            <div data-hero-parallax="0.4" className="flex items-center justify-center border-t border-white/10 px-6 py-16 lg:border-l lg:border-t-0">
               <KeyCharm className="w-full max-w-[300px] lg:max-w-[400px]" />
             </div>
           </div>

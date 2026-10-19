@@ -90,7 +90,7 @@ export function Navbar() {
         aria-label="Main navigation"
       >
         <Link
-          href="#top"
+          href="/"
           className="flex w-[72px] shrink-0 items-center justify-center border-r border-white/10 transition-colors hover:bg-white/5"
           aria-label={`${profile.name} - Home`}
         >
@@ -155,8 +155,8 @@ export function Navbar() {
             <ThemeIcon dark={isDark} />
           </button>
           <a
-            href="#contact"
-            className="hidden items-center bg-[#F2F1EE] px-10 font-mono text-xs font-bold uppercase tracking-wide text-zinc-950 transition-colors hover:bg-white md:flex"
+            href="/#contact"
+            className="hidden items-center bg-[#F2F1EE] px-10 font-mono text-xs font-bold uppercase tracking-wide text-zinc-950 transition-all duration-200 hover:bg-[#2A53E7] hover:text-white active:bg-[#1f42c2] active:text-white active:scale-[0.98] md:flex cursor-pointer"
           >
             Contact Us
           </a>
@@ -213,9 +213,9 @@ export function Navbar() {
             ))}
             <li className="md:hidden">
               <a
-                href="#contact"
+                href="/#contact"
                 onClick={closeMenu}
-                className="flex min-h-[48px] items-center justify-center bg-[#F2F1EE] font-mono text-xs font-semibold uppercase tracking-wider text-zinc-950"
+                className="flex min-h-[48px] items-center justify-center bg-[#F2F1EE] font-mono text-xs font-semibold uppercase tracking-wider text-zinc-950 transition-all duration-200 hover:bg-[#2A53E7] hover:text-white active:bg-[#1f42c2] active:text-white active:scale-[0.98] cursor-pointer"
               >
                 Contact Us
               </a>
