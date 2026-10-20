@@ -43,7 +43,7 @@ export function About() {
       let current = NAV[0].id;
       for (const { id } of NAV) {
         const node = document.getElementById(id);
-        if (node && node.getBoundingClientRect().top <= 180) current = id;
+        if (node && node.getBoundingClientRect().top <= 200) current = id;
       }
       setActive(current);
     };
@@ -56,12 +56,29 @@ export function About() {
     };
   }, []);
 
+  const activeIndex = Math.max(0, NAV.findIndex((item) => item.id === active));
+
   return <section id="about" data-overview-section={active} aria-labelledby="about-heading" className={styles.overview}>
     <header className={styles.masthead}><a href="#about">Nived <span>{"//"}</span> Studio</a><span>One small team. Many possibilities.</span><a href="#about-approach">Our way of thinking <b>↘</b></a></header>
     <div className={styles.layout}>
       <aside className={styles.rail}><div className={styles.railInner}>
-        <Label>A little about us</Label>
-        <nav aria-label="Company overview">{NAV.map(({ id, label }, index) => <a key={id} href={`#${id}`} onClick={() => setActive(id)} aria-current={active === id ? "location" : undefined}><span>0{index + 1}</span>{label}<b aria-hidden="true">{active === id ? "↗" : ""}</b></a>)}</nav>
+        <Label right={`0${activeIndex + 1} / 0${NAV.length}`}>A little about us</Label>
+        <nav aria-label="Company overview">
+          {NAV.map(({ id, label }) => {
+            const isCurrent = active === id;
+            return (
+              <a
+                key={id}
+                href={`#${id}`}
+                onClick={() => setActive(id)}
+                aria-current={isCurrent ? "location" : undefined}
+              >
+                <span>{label}</span>
+                {isCurrent ? <b aria-hidden="true">↗</b> : null}
+              </a>
+            );
+          })}
+        </nav>
         <p>Curiosity first.<br />Intention always.</p><div className={styles.railDash} /><a className={styles.railLink} href="#contact">Make it known <span>↘</span></a>
       </div></aside>
       <div className={styles.main}>

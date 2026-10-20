@@ -31,15 +31,6 @@
 .explore-footer { display: flex; justify-content: space-between; gap: 18px; border-top: 1px solid #303034; padding-top: 12px; color: #929298; font: 6px/1.7 var(--font-geist-mono), monospace; text-transform: uppercase; }
 .explore-lavender { margin-top: 115px; }
 .explore-ivory { margin-top: 175px; }
-.company-overview[data-overview-section="about-approach"] .company-rail nav { border: 1px solid #343439; border-radius: 8px; overflow: hidden; }
-.company-overview[data-overview-section="about-approach"] .company-rail nav a { padding: 12px; font-size: 14px; gap: 0; }
-.company-overview[data-overview-section="about-approach"] .company-rail nav a > span { display: none; }
-.company-overview[data-overview-section="about-approach"] .company-rail nav a[aria-current] { background: #fafafa; color: #222; }
-.company-overview[data-overview-section="about-approach"] .company-rail nav a:last-child { border-bottom: 0; }
-.company-overview[data-overview-section="about-approach"] .company-railInner > .company-label,
-.company-overview[data-overview-section="about-approach"] .company-railInner > p,
-.company-overview[data-overview-section="about-approach"] .company-railDash,
-.company-overview[data-overview-section="about-approach"] .company-railLink { display: none; }
 @media (max-width: 1000px) { .explorations { padding: 36px 28px 120px; } .explore-intro-caption p { font-size: 12px; } .explore-intro-caption { margin-left: 0; margin-right: 0; } .explore-caption p { font-size: 10px; } .explore-caption a { font-size: 8px; padding: 13px 10px; } .explore-meta { font-size: 6px; } .explore-emblem { width: 48px; } .explore-hero-art { margin: 0 -8px; } }
-@media (max-width: 600px) { .explorations { padding: 32px 20px 80px; overflow: hidden; } .explore-pill { font-size: 9px; } .explore-intro h3 { margin-left: 0; font-size: 35px; } .explore-intro-caption { margin-bottom: 64px; } .explore-caption { align-items: flex-start; flex-direction: column; gap: 18px; } .explore-caption a { min-height: 44px; font-size: 10px; padding: 12px 16px; } .explore-heading h4 { font-size: 31px; } .explore-heading { margin-top: 20px; } .explore-emblem { width: 42px; margin-right: 0; } .explore-direction, .explore-lavender, .explore-ivory { margin-top: 72px; } .explore-footer { font-size: 5px; } .explore-footer span:last-child { text-align: right; } .company-overview[data-overview-section="about-approach"] .company-rail nav { border: 0; border-radius: 0; } .company-overview[data-overview-section="about-approach"] .company-rail nav a { font-size: 12px; padding: 16px 9px; } }
+@media (max-width: 600px) { .explorations { padding: 32px 20px 80px; overflow: hidden; } .explore-pill { font-size: 9px; } .explore-intro h3 { margin-left: 0; font-size: 35px; } .explore-intro-caption { margin-bottom: 64px; } .explore-caption { align-items: flex-start; flex-direction: column; gap: 18px; } .explore-caption a { min-height: 44px; font-size: 10px; padding: 12px 16px; } .explore-heading h4 { font-size: 31px; } .explore-heading { margin-top: 20px; } .explore-emblem { width: 42px; margin-right: 0; } .explore-direction, .explore-lavender, .explore-ivory { margin-top: 72px; } .explore-footer { font-size: 5px; } .explore-footer span:last-child { text-align: right; } }
 @media (prefers-reduced-motion: reduce) { .explore-caption a { transition: none; } }
