@@ -66,6 +66,39 @@ body {
   max-width: 46ch;
 }
 
+/* Company overview: mosaic field */
+.ov-cell {
+  display: block;
+  background: var(--c, transparent);
+  transition: background 1.4s ease-out;
+}
+
+.ov-on {
+  opacity: 0;
+  transform: scale(0.55);
+}
+
+.is-live .ov-on {
+  animation: ov-pop 0.65s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: var(--d, 0s);
+}
+
+.ov-cell.is-lit {
+  background: #6b8cff;
+  transition: none;
+}
+
+@keyframes ov-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.55);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* Make it known: block field */
 .mik-cell {
   display: block;
@@ -106,13 +139,16 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .ov-on,
   .mik-on {
     opacity: 1;
     transform: none;
   }
+  .is-live .ov-on,
   .is-live .mik-on {
     animation: none;
   }
+  .ov-cell,
   .mik-cell {
     transition-duration: 0.01s;
   }

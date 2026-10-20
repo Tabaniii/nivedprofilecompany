@@ -140,12 +140,6 @@ function BlockField() {
         ))}
       </h2>
 
-      <p
-        className="pointer-events-none absolute inset-x-0 bottom-10 sm:bottom-14 m-0 text-center font-bricolage text-sm text-[#8d909b] transition-opacity duration-700"
-        style={{ opacity: live ? 1 : 0, transitionDelay: "0.9s" }}
-      >
-        Move through the blocks to leave a mark
-      </p>
     </div>
   );
 }

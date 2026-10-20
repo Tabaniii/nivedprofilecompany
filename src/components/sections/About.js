@@ -1,102 +1,83 @@
-import Image from "next/image";
-import { profile } from "@/lib/data/profile";
-import { Container } from "@/components/ui/Container";
-import { Card } from "@/components/ui/Card";
-import { Badge } from "@/components/ui/Badge";
+"use client";
+
+import { useEffect, useId, useState } from "react";
+import "./About.css";
+import { WhatWeDo } from "./WhatWeDo";
+import { Explorations } from "./Explorations";
+
+const styles = {"accordion": "company-accordion", "approachGrid": "company-approachGrid", "approachHeading": "company-approachHeading", "articleTop": "company-articleTop", "artwork": "company-artwork", "cta": "company-cta", "ctaBottom": "company-ctaBottom", "ctaTitle": "company-ctaTitle", "desktopBreak": "company-desktopBreak", "dot": "company-dot", "footer": "company-footer", "hint": "company-hint", "intro": "company-intro", "introBottom": "company-introBottom", "label": "company-label", "layout": "company-layout", "main": "company-main", "masthead": "company-masthead", "number": "company-number", "overview": "company-overview", "processHeading": "company-processHeading", "processRow": "company-processRow", "rail": "company-rail", "railDash": "company-railDash", "railInner": "company-railInner", "railLink": "company-railLink", "section": "company-section", "selected": "company-selected", "statement": "company-statement", "story": "company-story", "storyCopy": "company-storyCopy", "toggle": "company-toggle"};
+
+const NAV = [
+  { id: "about-intro", label: "About us" },
+  { id: "about-process", label: "What we do" },
+  { id: "about-approach", label: "Explorations" },
+];
+const PROCESS = [
+  ["Design", "How it looks", "Give the idea a clear form. We explore visual direction, map the experience and design the details people see and use — from a brand identity to a website interface. The aim is a coherent system that feels clear, useful and recognisably yours."],
+  ["Create", "How it takes shape", "Turn a direction into something tangible. We create visual assets, content and prototypes that help a story take shape. Each piece has a purpose: explain the idea, invite someone in, or make the experience easier to understand."],
+  ["Develop", "How it gets built", "Build websites, products and systems that people can use. We connect the interface to the logic behind it, consider different screen sizes, and work through testing, launch and handover. The result should be useful today and straightforward to improve tomorrow."],
+  ["Research", "How it gets better", "Ask questions before assuming the answer. We explore the context, talk through real needs and test ideas early. Research stays close to the work, helping us choose what to build, understand what is working and decide what to improve next."],
+];
+
+function Label({ children, right }) {
+  return <div className={styles.label}><span>{children}</span>{right && <span>{right}</span>}</div>;
+}
+
+function ProcessAccordion() {
+  const [open, setOpen] = useState(0);
+  const id = useId();
+  return <div className={styles.accordion}>{PROCESS.map(([title, hint, body], index) => (
+    <div key={title} className={styles.processRow}>
+      <button type="button" id={`${id}-button-${index}`} aria-expanded={open === index} aria-controls={`${id}-panel-${index}`} onClick={() => setOpen(open === index ? -1 : index)}>
+        <span className={styles.number}>0{index + 1}</span><span className={open === index ? styles.selected : ""}>{title}</span><span className={styles.hint}>{hint}</span><span className={`${styles.toggle} ${open === index ? styles.selected : ""}`} aria-hidden="true">{open === index ? "×" : "+"}</span>
+      </button>
+      <div id={`${id}-panel-${index}`} role="region" aria-labelledby={`${id}-button-${index}`} hidden={open !== index}><p>{body}</p></div>
+    </div>
+  ))}</div>;
+}
 
 export function About() {
-  return (
-    <section
-      id="about"
-      aria-labelledby="about-heading"
-      className="py-20 md:py-28 border-t border-zinc-800/60 bg-zinc-950/40"
-    >
-      <Container>
-        {/* Section Header */}
-        <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-14">
-          <Badge variant="brand" size="md" className="mb-3">
-            Company Overview
-          </Badge>
-          <h2
-            id="about-heading"
-            className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl"
-          >
-            Empowering Physical Retail with Intelligent Systems
-          </h2>
+  const [active, setActive] = useState("about-intro");
+  useEffect(() => {
+    const updateActive = () => {
+      let current = NAV[0].id;
+      for (const { id } of NAV) {
+        const node = document.getElementById(id);
+        if (node && node.getBoundingClientRect().top <= 180) current = id;
+      }
+      setActive(current);
+    };
+    updateActive();
+    window.addEventListener("scroll", updateActive, { passive: true, capture: true });
+    window.addEventListener("resize", updateActive);
+    return () => {
+      window.removeEventListener("scroll", updateActive, true);
+      window.removeEventListener("resize", updateActive);
+    };
+  }, []);
+
+  return <section id="about" data-overview-section={active} aria-labelledby="about-heading" className={styles.overview}>
+    <header className={styles.masthead}><a href="#about">Nived <span>{"//"}</span> Studio</a><span>One small team. Many possibilities.</span><a href="#about-approach">Our way of thinking <b>↘</b></a></header>
+    <div className={styles.layout}>
+      <aside className={styles.rail}><div className={styles.railInner}>
+        <Label>A little about us</Label>
+        <nav aria-label="Company overview">{NAV.map(({ id, label }, index) => <a key={id} href={`#${id}`} onClick={() => setActive(id)} aria-current={active === id ? "location" : undefined}><span>0{index + 1}</span>{label}<b aria-hidden="true">{active === id ? "↗" : ""}</b></a>)}</nav>
+        <p>Curiosity first.<br />Intention always.</p><div className={styles.railDash} /><a className={styles.railLink} href="#contact">Make it known <span>↘</span></a>
+      </div></aside>
+      <div className={styles.main}>
+        <div id="about-intro" className={styles.intro}>
+          <Label right="Nived / Company overview"><i className={styles.dot} /> Independent by nature</Label>
+          <h2 id="about-heading">Ideas made real.<br /><span>Then made known.</span></h2>
+          <div className={styles.introBottom}><p>We design, create, <strong>develop</strong><br />and <strong>research.</strong></p><a href="#about-story">Meet the team <span aria-hidden="true">↓</span></a></div>
+          <figure className={styles.artwork}><div role="img" aria-label="Blue mosaic tiles with the white Nived mark" /><figcaption><span>Different pieces. One shared direction.</span><span>Fig. 01 — Nived</span></figcaption></figure>
+          <div className={styles.statement}><Label><b>+</b> The short version</Label><p>We turn ideas into things<br className={styles.desktopBreak} /> people can use, <span>then make<br className={styles.desktopBreak} /> sure people know about them.</span></p></div>
+          <div id="about-story" className={styles.story}><div><Label>Our story / 01</Label><h3>Small team.<br />Shared drive.</h3><em>One small team.</em></div><div className={styles.storyCopy}><p>We deliver creations to an audience, to be known. We take an idea from how it looks, to how it gets built, to how it ships, and then learn from what people do with it.</p><p>Nived is a small team of AI students. The name is my own, spelled backwards, because this started as one person’s idea before it became a team. Our first products were built by two friends who share the same drive, and we’re still growing.</p><p>Building something is only half the job. The other half is making sure the right people find it, which is why <span>“make it known”</span> is more than a slogan for us.</p></div></div>
         </div>
-
-        {/* Startup Card & Performance Metrics */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-16 rounded-3xl border border-zinc-800/80 bg-zinc-900/40 p-6 md:p-8 backdrop-blur-sm">
-          <div className="flex justify-center lg:col-span-4">
-            <div className="relative group">
-              <div
-                className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-blue-500 to-cyan-400 opacity-25 blur-lg transition duration-500 group-hover:opacity-45"
-                aria-hidden="true"
-              />
-              <div className="relative h-44 w-44 sm:h-52 sm:w-52 rounded-2xl border-2 border-zinc-800 bg-zinc-900/90 p-4 shadow-xl flex flex-col items-center justify-center">
-                <Image
-                  src={profile.avatar}
-                  alt={`${profile.name} Startup Logo`}
-                  width={140}
-                  height={140}
-                  className="h-28 w-28 object-contain rounded-xl"
-                />
-                <span className="mt-3 text-xs font-semibold text-zinc-300">
-                  {profile.fullName}
-                </span>
-              </div>
-              <div className="absolute -bottom-2 right-2 rounded-full border border-zinc-700 bg-zinc-900 px-3 py-1 shadow-md">
-                <p className="text-[11px] font-medium text-zinc-300">
-                  📍 {profile.location} · Retail Tech
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="lg:col-span-8 flex flex-col justify-center">
-            <h3 className="text-xl font-bold text-foreground">
-              {profile.fullName}
-            </h3>
-            <p className="text-sm font-medium text-blue-400 mb-3">
-              {profile.title}
-            </p>
-            <p className="text-sm sm:text-base text-zinc-400 leading-relaxed mb-6">
-              {profile.bio}
-            </p>
-
-            {/* Performance Metrics */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-zinc-800/80">
-              {profile.stats.map((stat) => (
-                <div key={stat.label} className="flex flex-col">
-                  <span className="text-2xl font-extrabold text-foreground tracking-tight">
-                    {stat.value}
-                  </span>
-                  <span className="text-xs text-zinc-500 mt-0.5">
-                    {stat.label}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* 3 Core Pillars matching the brief */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {profile.highlights.map((highlight, index) => (
-            <Card key={highlight.title} className="flex flex-col h-full border-zinc-800/80 bg-zinc-900/50">
-              <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-blue-500/10 text-blue-400 font-bold text-sm">
-                0{index + 1}
-              </div>
-              <h3 className="text-lg font-semibold text-foreground tracking-tight mb-2">
-                {highlight.title}
-              </h3>
-              <p className="text-sm text-zinc-400 leading-relaxed mt-auto">
-                {highlight.description}
-              </p>
-            </Card>
-          ))}
-        </div>
-      </Container>
-    </section>
-  );
+        <WhatWeDo><ProcessAccordion /></WhatWeDo>
+        <Explorations />
+        <div className={styles.cta}><Label>From an idea to an audience.</Label><a href="#contact" className={styles.ctaTitle}>Make it <em>known.</em><svg viewBox="0 0 80 80" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M40 4v72M4 40h72M14 14l52 52M66 14 14 66" /></svg></a><div className={styles.ctaBottom}><span>Design. Create. Develop. Research.</span><a href="#about">Back to top <span>↑</span></a></div></div>
+        <footer className={styles.footer}><span>{"Nived // Studio"}</span><span>One small team.</span></footer>
+      </div>
+    </div>
+  </section>;
 }
