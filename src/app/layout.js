@@ -36,7 +36,10 @@ const newsreader = Newsreader({
 });
 
 export const metadata = {
-  title: `${profile.name} — ${profile.title}`,
+  title: {
+    default: "Nived",
+    template: "%s",
+  },
   description: profile.bio,
   keywords: [
     "Smart POS",
@@ -50,14 +53,14 @@ export const metadata = {
   authors: [{ name: profile.name, url: "https://github.com" }],
   creator: profile.name,
   openGraph: {
-    title: `${profile.name} — ${profile.title}`,
+    title: "Nived",
     description: profile.tagline,
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${profile.name} — ${profile.title}`,
+    title: "Nived",
     description: profile.tagline,
   },
   icons: {

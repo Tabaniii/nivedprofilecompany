@@ -1,9 +1,10 @@
+import Link from "next/link";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Contact } from "@/components/sections/Contact";
 
 export const metadata = {
-  title: "Pricing — Nived",
+  title: "Nived Pricing",
   description:
     "Choose your plan. Start from $5, or find your custom fit with Nived.",
 };
@@ -169,13 +170,13 @@ export default function PricingPage() {
                   </div>
 
                   <div className="mt-8">
-                    <a
+                    <Link
                       href="/#contact"
                       className="group flex w-full items-center justify-between bg-[#F2F1EE] px-6 py-4 font-mono text-xs font-bold uppercase tracking-wider text-zinc-950 transition-all duration-200 hover:bg-[#2A53E7] hover:text-white active:scale-[0.99] cursor-pointer"
                     >
                       <span>Start creating</span>
                       <ArrowUpRightIcon />
-                    </a>
+                    </Link>
                     <span className="mt-3 block text-center font-mono text-[11px] tracking-wide text-zinc-500">
                       USD • Monthly billing
                     </span>
@@ -241,13 +242,13 @@ export default function PricingPage() {
                   </div>
 
                   <div className="mt-8">
-                    <a
+                    <Link
                       href="/#contact"
                       className="group flex w-full items-center justify-between bg-[#eed3c4] px-6 py-4 font-mono text-xs font-bold uppercase tracking-wider text-zinc-950 transition-all duration-200 hover:bg-[#2A53E7] hover:text-white active:scale-[0.99] cursor-pointer"
                     >
                       <span>Contact us</span>
                       <ArrowUpRightIcon />
-                    </a>
+                    </Link>
                     <span className="mt-3 block text-center font-mono text-[11px] tracking-wide text-zinc-500">
                       A plan and price shaped around your needs
                     </span>

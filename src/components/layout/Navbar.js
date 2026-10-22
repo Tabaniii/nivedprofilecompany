@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { profile } from "@/lib/data/profile";
 
 const cell =
@@ -74,6 +75,7 @@ function ThemeIcon({ dark }) {
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isDark, setIsDark] = useState(true);
+  const pathname = usePathname();
 
   const closeMenu = () => setIsOpen(false);
 
@@ -105,16 +107,25 @@ export function Navbar() {
 
         <div className="relative flex flex-1 items-center">
           <ul className="hidden items-center gap-4 px-5 xl:flex 2xl:gap-7">
-            {profile.navLinks.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  className="py-1.5 font-mono text-[11px] uppercase tracking-wide text-zinc-300 transition-colors hover:text-white 2xl:text-xs"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
+            {profile.navLinks.map((link) => {
+              const isActive =
+                pathname === link.href ||
+                (link.href === "/#top" && pathname === "/");
+              return (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className={`py-1.5 font-mono text-[11px] uppercase tracking-wide transition-colors 2xl:text-xs ${
+                      isActive
+                        ? "text-white font-semibold underline underline-offset-8 decoration-[#2A53E7]"
+                        : "text-zinc-400 hover:text-white"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
 
           <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
@@ -154,12 +165,12 @@ export function Navbar() {
           >
             <ThemeIcon dark={isDark} />
           </button>
-          <a
+          <Link
             href="/#contact"
             className="hidden items-center bg-[#F2F1EE] px-10 font-mono text-xs font-bold uppercase tracking-wide text-zinc-950 transition-all duration-200 hover:bg-[#2A53E7] hover:text-white active:bg-[#1f42c2] active:text-white active:scale-[0.98] md:flex cursor-pointer"
           >
             Contact Us
-          </a>
+          </Link>
           <button
             type="button"
             onClick={() => setIsOpen(!isOpen)}
@@ -200,25 +211,34 @@ export function Navbar() {
           className="border-t border-white/10 bg-[#0e0e12] xl:hidden"
         >
           <ul className="flex flex-col">
-            {profile.navLinks.map((link) => (
-              <li key={link.href} className="border-b border-white/10">
-                <a
-                  href={link.href}
-                  onClick={closeMenu}
-                  className="flex min-h-[48px] items-center px-6 font-mono text-xs uppercase tracking-wider text-zinc-300 transition-colors hover:bg-white/5 hover:text-[#F2F1EE]"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
+            {profile.navLinks.map((link) => {
+              const isActive =
+                pathname === link.href ||
+                (link.href === "/#top" && pathname === "/");
+              return (
+                <li key={link.href} className="border-b border-white/10">
+                  <Link
+                    href={link.href}
+                    onClick={closeMenu}
+                    className={`flex min-h-[48px] items-center px-6 font-mono text-xs uppercase tracking-wider transition-colors hover:bg-white/5 ${
+                      isActive
+                        ? "text-white font-bold bg-white/[0.03]"
+                        : "text-zinc-400 hover:text-[#F2F1EE]"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              );
+            })}
             <li className="md:hidden">
-              <a
+              <Link
                 href="/#contact"
                 onClick={closeMenu}
                 className="flex min-h-[48px] items-center justify-center bg-[#F2F1EE] font-mono text-xs font-semibold uppercase tracking-wider text-zinc-950 transition-all duration-200 hover:bg-[#2A53E7] hover:text-white active:bg-[#1f42c2] active:text-white active:scale-[0.98] cursor-pointer"
               >
                 Contact Us
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

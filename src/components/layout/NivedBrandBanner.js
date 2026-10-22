@@ -7,19 +7,6 @@ import { useEffect, useRef, useState } from "react";
  */
 const BRAND_VARIATIONS = [
   {
-    id: "geometric-lower",
-    text: "nived",
-    name: "Geometric Modern",
-    fontFamily:
-      'var(--font-geist-sans), "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
-    fontSize: "clamp(4.5rem, 19vw, 26rem)",
-    letterSpacing: "-0.045em",
-    fontWeight: 900,
-    fontStyle: "normal",
-    transform: "none",
-    stroke: false,
-  },
-  {
     id: "brutalist-upper",
     text: "NIVED",
     name: "Brutalist Monolith",
@@ -27,6 +14,19 @@ const BRAND_VARIATIONS = [
       'var(--font-geist-sans), "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
     fontSize: "clamp(4.5rem, 19vw, 26rem)",
     letterSpacing: "-0.05em",
+    fontWeight: 900,
+    fontStyle: "normal",
+    transform: "none",
+    stroke: false,
+  },
+  {
+    id: "geometric-lower",
+    text: "nived",
+    name: "Geometric Modern",
+    fontFamily:
+      'var(--font-geist-sans), "Inter", -apple-system, BlinkMacSystemFont, sans-serif',
+    fontSize: "clamp(4.5rem, 19vw, 26rem)",
+    letterSpacing: "-0.045em",
     fontWeight: 900,
     fontStyle: "normal",
     transform: "none",

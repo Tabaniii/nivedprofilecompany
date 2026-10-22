@@ -69,56 +69,6 @@ export function WhatWeDo({ children }) {
       <div className="wwd-future"><h4>The future is a place<br />we can <strong>design for.</strong></h4><p>We pay attention to the edges: where emerging tools meet human needs, where a small signal hints at a wider change, and where a thoughtful experiment can open a new path.</p><p>Our process connects design, making, development and research. We start with the question, build something we can learn from, and keep refining it with intention.</p><div>One small team.<span>Stay curious about what’s next</span></div></div>
     </div>
     <div className="wwd-services"><p className="wwd-eyebrow">Built around what you need / 01</p><h3>Products we<br />deliver today.</h3><div className="wwd-service-grid">{SERVICES.map((service, index) => <article key={service.title}><span className="wwd-service-number">0{index + 1}</span><h4>{service.title}</h4><p>{service.body}</p><ul>{service.details.map(detail => <li key={detail}>{detail}</li>)}</ul><div className="wwd-tags">{service.tags.map(tag => <span key={tag}>{tag}</span>)}</div></article>)}</div><div className="wwd-project-link"><span>Make it Known</span><a href="#contact">Start a project <span aria-hidden="true">→</span></a></div></div>
-    <div className="wwd-showcase">
-      <div className="wwd-charm-grid" aria-label="Nived tags in seven colors">
-        <button
-          type="button"
-          className="wwd-new"
-          onClick={() => {
-            handleNext();
-          }}
-          title="Click to explore next Nived Card"
-          aria-label="New — Nived Card"
-        >
-          <i /> NEW — Nived Card.
-        </button>
-        <div className="wwd-blue-block block-one" />
-        <div className="wwd-blue-block block-two" />
-        <div className="wwd-blue-block block-mid-left" />
-        <div className="wwd-blue-block block-btm-left" />
-        <div className="wwd-blue-block block-btm-right-base" />
-        <div className="wwd-blue-block block-btm-right-up" />
-        {[
-          { color: "black", label: "Black Tag", cardIdx: 6 },
-          { color: "mint", label: "Mint Tag", cardIdx: 2 },
-          { color: "blue", label: "Blue Tag", cardIdx: 1 },
-          { color: "yellow", label: "Yellow Tag", cardIdx: 5 },
-          { color: "white", label: "White Tag", cardIdx: 0 },
-          { color: "red", label: "Red Tag", cardIdx: 4 },
-          { color: "pink", label: "Pink Tag", cardIdx: 3 },
-        ].map(({ color, label, cardIdx }) => (
-          <div
-            key={color}
-            role="button"
-            tabIndex={0}
-            className={`wwd-tag wwd-tag-${color}`}
-            aria-label={`${label} - click to view matching card`}
-            onClick={() => handleSelectColor(cardIdx)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                handleSelectColor(cardIdx);
-              }
-            }}
-          >
-            <Mark />
-            <i />
-          </div>
-        ))}
-        <h3>One tap.<br />Your<br />whole<br />story.</h3>
-      </div>
-      <p className="wwd-showcase-caption">A little object. A new way to introduce yourself.</p>
-    </div>
     <div className="wwd-product">
       <div className="wwd-product-visual">
         <div className="wwd-card-stack" role="region" aria-label="Nived Card Showcase">

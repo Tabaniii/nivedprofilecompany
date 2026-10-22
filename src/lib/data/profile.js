@@ -19,8 +19,8 @@ export const profile = {
   navLinks: [
     { label: "Home", href: "/#top" },
     { label: "Overview", href: "/#about" },
-    { label: "Products", href: "/#projects" },
     { label: "Pricing", href: "/pricing" },
+    { label: "Exploration", href: "/exploration" },
     { label: "Make It Known", href: "/#make-it-known" },
   ],
   community: {

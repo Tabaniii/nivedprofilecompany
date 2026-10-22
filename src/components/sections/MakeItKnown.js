@@ -2,9 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const COLS = 11;
 const TONES = ["#2A53E7", "#243b8f", "#243b8f", "#1b2140"];
-const EDGE_ODDS = [0.7, 0.5, 0.28];
+const EDGE_ODDS = [0.75, 0.58, 0.4, 0.22, 0.1];
 
 function rng(seed) {
   let a = seed;
@@ -17,6 +16,41 @@ function rng(seed) {
   };
 }
 
+function getCols(w) {
+  if (w < 640) return 12;
+  if (w < 1024) return 16;
+  return 22;
+}
+
+const HEADING_WORDS = [
+  {
+    word: "MAKE",
+    letters: [
+      { char: "M", highlight: false },
+      { char: "A", highlight: true },
+      { char: "K", highlight: false },
+      { char: "E", highlight: false },
+    ],
+  },
+  {
+    word: "IT",
+    letters: [
+      { char: "I", highlight: false },
+      { char: "T", highlight: true },
+    ],
+  },
+  {
+    word: "KNOWN",
+    letters: [
+      { char: "K", highlight: false },
+      { char: "N", highlight: false },
+      { char: "O", highlight: true },
+      { char: "W", highlight: false },
+      { char: "N", highlight: false },
+    ],
+  },
+];
+
 function BlockField() {
   const fieldRef = useRef(null);
   const gridRef = useRef(null);
@@ -27,6 +61,7 @@ function BlockField() {
     const grid = gridRef.current;
     let cells = [];
     let u = 0;
+    let cols = 22;
     let rows = 0;
     let lastW = 0;
     let last = -1;
@@ -34,10 +69,11 @@ function BlockField() {
     const build = () => {
       const w = field.clientWidth;
       lastW = w;
-      u = w / COLS;
+      cols = getCols(w);
+      u = w / cols;
       rows = Math.ceil(field.clientHeight / u);
       grid.style.setProperty("--u", `${u}px`);
-      grid.style.gridTemplateColumns = `repeat(${COLS}, ${u}px)`;
+      grid.style.gridTemplateColumns = `repeat(${cols}, ${u}px)`;
       grid.style.gridAutoRows = `${u}px`;
       grid.replaceChildren();
       cells = [];
@@ -45,16 +81,18 @@ function BlockField() {
       const r = rng(7);
       const frag = document.createDocumentFragment();
       for (let y = 0; y < rows; y++) {
-        for (let x = 0; x < COLS; x++) {
+        for (let x = 0; x < cols; x++) {
           const el = document.createElement("i");
           el.className = "mik-cell";
-          const depth = Math.min(y, rows - 1 - y);
-          if (depth < 3 && r() < EDGE_ODDS[depth]) {
+          const depthY = Math.min(y, rows - 1 - y);
+          const depthX = Math.min(x, cols - 1 - x);
+          const depth = Math.min(depthY, depthX + 1);
+          if (depth < EDGE_ODDS.length && r() < EDGE_ODDS[depth]) {
             el.classList.add("mik-on");
             el.style.setProperty("--c", TONES[Math.floor(r() * TONES.length)]);
             el.style.setProperty(
               "--d",
-              `${(depth * 0.12 + x * 0.035 + r() * 0.35).toFixed(2)}s`
+              `${(depth * 0.1 + x * 0.025 + r() * 0.35).toFixed(2)}s`
             );
           }
           cells.push(el);
@@ -68,8 +106,8 @@ function BlockField() {
       const b = field.getBoundingClientRect();
       const x = Math.floor((e.clientX - b.left) / u);
       const y = Math.floor((e.clientY - b.top) / u);
-      if (x < 0 || x >= COLS || y < 0 || y >= rows) return;
-      const i = y * COLS + x;
+      if (x < 0 || x >= cols || y < 0 || y >= rows) return;
+      const i = y * cols + x;
       if (i === last) return;
       last = i;
       const el = cells[i];
@@ -123,21 +161,31 @@ function BlockField() {
 
       <h2
         id="make-it-known-heading"
-        className="pointer-events-none absolute inset-0 m-0 grid place-content-center text-center font-bricolage text-[clamp(3.5rem,11vw,9rem)] font-extrabold leading-[0.92] tracking-[-0.045em]"
+        className="pointer-events-none absolute inset-0 m-0 flex items-center justify-center text-center font-bricolage text-[clamp(2.2rem,7.6vw,7.6rem)] font-extrabold uppercase tracking-[-0.03em] select-none px-4"
+        style={{ fontFamily: "var(--font-bricolage-grotesque), sans-serif" }}
       >
-        {["Make it", "known"].map((line, i) => (
-          <span key={line} className="block overflow-hidden pb-[0.06em]">
-            <span
-              className="mik-line block transition-transform duration-[1100ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
-              style={{
-                transform: live ? "none" : "translateY(110%)",
-                transitionDelay: `${0.2 + i * 0.12}s`,
-              }}
-            >
-              {line}
+        <span className="inline-flex items-center gap-[0.38em] whitespace-nowrap">
+          {HEADING_WORDS.map((w, i) => (
+            <span key={w.word} className="inline-block overflow-hidden pb-[0.06em]">
+              <span
+                className="mik-line inline-flex transition-transform duration-[1100ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
+                style={{
+                  transform: live ? "none" : "translateY(110%)",
+                  transitionDelay: `${0.2 + i * 0.1}s`,
+                }}
+              >
+                {w.letters.map((l, letterIndex) => (
+                  <span
+                    key={`${w.word}-${letterIndex}`}
+                    className={l.highlight ? "text-[#2A53E7]" : "text-[#F3F2EE]"}
+                  >
+                    {l.char}
+                  </span>
+                ))}
+              </span>
             </span>
-          </span>
-        ))}
+          ))}
+        </span>
       </h2>
 
     </div>
