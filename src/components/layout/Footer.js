@@ -50,7 +50,7 @@ export function Footer() {
 
   return (
     <footer
-      id="contact"
+      id="footer"
       aria-label="Footer"
       className="relative w-full flex flex-col bg-[#0A0A0A] text-white selection:bg-white/20 selection:text-white border-t border-white/[0.08] overflow-hidden"
     >
@@ -60,7 +60,7 @@ export function Footer() {
         aria-label="Navigation Directory"
         className="w-full px-6 sm:px-10 lg:px-16 pt-10 sm:pt-14 lg:pt-16 pb-6 sm:pb-8 font-mono"
       >
-        <div className="mx-auto max-w-7xl rounded-sm border border-white/[0.08] bg-[#111114]">
+        <div className="mx-auto max-w-7xl rounded-none border border-white/[0.08] bg-[#111114]">
           <div className="flex flex-col lg:flex-row">
             {/* Left Block: Logo, Description, Make It Known */}
             <div className="flex-1 px-8 py-8 sm:px-10 sm:py-10 lg:px-12 lg:py-11 flex flex-col justify-between gap-8 lg:max-w-[480px]">

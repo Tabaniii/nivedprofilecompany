@@ -17,6 +17,8 @@
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
   --font-bricolage: var(--font-bricolage-grotesque), system-ui, sans-serif;
   --font-newsreader: var(--font-newsreader-serif), Georgia, serif;
+  --font-dm: var(--font-dm-sans), system-ui, sans-serif;
+  --font-jetbrains: var(--font-jetbrains-mono), ui-monospace, monospace;
 }
 
 :root {

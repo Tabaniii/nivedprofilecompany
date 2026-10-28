@@ -3,6 +3,8 @@ import {
   Geist_Mono,
   Space_Grotesk,
   Newsreader,
+  DM_Sans,
+  JetBrains_Mono,
 } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -21,6 +23,16 @@ const geistMono = Geist_Mono({
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
+  subsets: ["latin"],
+});
+
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
+  subsets: ["latin"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
   subsets: ["latin"],
 });
 
@@ -73,7 +85,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`dark ${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${bricolage.variable} ${newsreader.variable} h-full antialiased`}
+      className={`dark ${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${dmSans.variable} ${jetbrainsMono.variable} ${bricolage.variable} ${newsreader.variable} h-full antialiased`}
     >
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />

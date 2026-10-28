@@ -1,0 +1,18 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Oceon Green">
+<path id="Vector" d="M46 0H14C6.26801 0 0 6.26801 0 14V46C0 53.732 6.26801 60 14 60H46C53.732 60 60 53.732 60 46V14C60 6.26801 53.732 0 46 0Z" fill="#B7E4C7"/>
+<path id="Vector_2" opacity="0.4" d="M7.00098 53.8754C11.001 36.6254 19.501 19.8754 26.501 19.8754C33.501 19.8754 36.001 38.8754 42.001 38.8754C47.001 38.8754 49.001 17.8754 52.001 9.87539" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke="white"/>
+<path id="Vector_3" d="M7.00098 53.5004C11.001 36.2504 19.501 19.5004 26.501 19.5004C33.501 19.5004 36.001 38.5004 42.001 38.5004C47.001 38.5004 49.001 17.5004 52.001 9.50039" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke="#1F4D2E"/>
+<path id="Vector_4" d="M51.999 13.75C54.3462 13.75 56.249 11.8472 56.249 9.5C56.249 7.15279 54.3462 5.25 51.999 5.25C49.6518 5.25 47.749 7.15279 47.749 9.5C47.749 11.8472 49.6518 13.75 51.999 13.75Z" fill="url(#paint0_linear_403_1182)"/>
+<path id="Vector_5" d="M52.001 12.1254C53.4507 12.1254 54.626 10.9501 54.626 9.50039C54.626 8.05064 53.4507 6.87539 52.001 6.87539C50.5512 6.87539 49.376 8.05064 49.376 9.50039C49.376 10.9501 50.5512 12.1254 52.001 12.1254Z" fill="#171922"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_403_1182" x1="47.749" y1="5.25" x2="56.249" y2="13.75" gradientUnits="userSpaceOnUse">
+<stop stop-color="white"/>
+<stop offset="0.25" stop-color="#E2E8F0"/>
+<stop offset="0.5" stop-color="#94A3B8"/>
+<stop offset="0.75" stop-color="#CBD5E1"/>
+<stop offset="1" stop-color="#475569"/>
+</linearGradient>
+</defs>
+</svg>

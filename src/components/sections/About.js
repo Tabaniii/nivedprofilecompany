@@ -93,8 +93,8 @@ export function About() {
         <WhatWeDo><ProcessAccordion /></WhatWeDo>
         <Explorations />
         <div className={styles.cta}><Label>From an idea to an audience.</Label><a href="#contact" className={styles.ctaTitle}>Make it <em>known.</em><svg viewBox="0 0 80 80" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true"><path d="M40 4v72M4 40h72M14 14l52 52M66 14 14 66" /></svg></a><div className={styles.ctaBottom}><span>Design. Create. Develop. Research.</span><a href="#about">Back to top <span>↑</span></a></div></div>
-        <footer className={styles.footer}><span>{"Nived // Studio"}</span><span>One small team.</span></footer>
       </div>
     </div>
+    <footer className={styles.footer}><a href="#about">Nived <span>{"//"}</span> Studio</a><span>One small team.</span></footer>
   </section>;
 }

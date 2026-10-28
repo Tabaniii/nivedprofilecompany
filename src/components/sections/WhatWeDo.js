@@ -19,8 +19,25 @@ const CARDS = [
   { name: "Black", src: "/card/Black.svg", hex: "#0c0d10" },
 ];
 
-function Mark({ className = "" }) {
-  return <svg className={className} viewBox="0 0 160 160" fill="none" aria-hidden="true"><path d="M16 141C30 91 53 14 76 59S99 166 146 17" stroke="currentColor" strokeWidth="10" strokeLinecap="round" /></svg>;
+function CtaWave({ className = "" }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 525 371"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <g opacity="0.28">
+        <path
+          d="M4.49576 366.296C66.3798 258.296 138.578 85.4961 200.462 101.696C262.346 120.596 241.718 301.496 324.23 290.696C417.056 274.496 468.626 117.896 520.196 4.4961"
+          stroke="white"
+          strokeWidth="8.99"
+          strokeLinecap="round"
+        />
+      </g>
+    </svg>
+  );
 }
 
 export function WhatWeDo({ children }) {
@@ -136,6 +153,31 @@ export function WhatWeDo({ children }) {
       </div>
       <div className="wwd-product-copy"><p className="wwd-eyebrow">Introducing Nived Card.</p><h4>Your introduction,<br />all in one place.</h4><p>Nived Card brings your contact details, links, website and profile together in one digital destination, ready to share with a tap on a compatible NFC-enabled phone.</p><p>For the first hello, the next collaboration, and everything you want people to discover about you.</p><ul><li>Your details and links, together</li><li>A simple way to share your work</li><li>A physical card with a digital story</li></ul></div>
     </div>
-    <div className="wwd-order"><Mark /><div><p className="wwd-eyebrow">Meet your next introduction.</p><h3>One tap.<br />Your whole story.</h3><a href="#contact">Enquire about your card <span aria-hidden="true">→</span></a></div></div>
+    <div className="wwd-order">
+      <CtaWave className="wwd-order-wave" />
+      <div className="wwd-order-content">
+        <h3 className="wwd-order-title">
+          One tap.<br />Your whole story.
+        </h3>
+        <a href="#contact" className="wwd-order-btn">
+          <span>Order yours</span>
+          <svg
+            width="12"
+            height="9"
+            viewBox="0 0 12 9"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              d="M0.8 4.3H10.72M6.752 7.8L10.72 4.3L6.752 0.8"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+            />
+          </svg>
+        </a>
+      </div>
+    </div>
   </div>;
 }

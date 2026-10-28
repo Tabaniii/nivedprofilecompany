@@ -1,0 +1,409 @@
+/* NIVED Contact Section (based on contact-concept.html) */
+.nv-contact-section {
+  position: relative;
+  width: 100%;
+  padding: 80px 24px;
+  background: var(--background, #09090b);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nv-container {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+#nived-contact-preview {
+  --nv-bg: #101013;
+  --nv-panel: #121319;
+  --nv-blue: #2947c8;
+  --nv-ink: #f6f5f2;
+  --nv-muted: #a5a6b1;
+  --nv-line: #2a2c36;
+  color: var(--nv-ink);
+  font-family: Arial, Helvetica, sans-serif;
+  width: 100%;
+}
+
+#nived-contact-preview * {
+  box-sizing: border-box;
+}
+
+#nived-contact-preview .nv-shell {
+  display: grid;
+  grid-template-columns: 44% 56%;
+  background: var(--nv-bg);
+  border-radius: 20px 0 0 0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+  min-height: 530px;
+}
+
+#nived-contact-preview .nv-left {
+  padding: 27px 26px 28px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+  min-height: 530px;
+}
+
+#nived-contact-preview .nv-blocks {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 46%;
+  height: 102px;
+  z-index: -1;
+  pointer-events: none;
+}
+
+#nived-contact-preview .nv-blocks span {
+  position: absolute;
+  background: var(--nv-blue);
+}
+
+#nived-contact-preview .nv-blocks span:nth-child(1) {
+  top: 0;
+  left: 0;
+  width: 52%;
+  height: 39px;
+  opacity: 0.68;
+}
+
+#nived-contact-preview .nv-blocks span:nth-child(2) {
+  top: 0;
+  right: 0;
+  width: 48%;
+  height: 79px;
+}
+
+#nived-contact-preview .nv-blocks span:nth-child(3) {
+  top: 79px;
+  right: 0;
+  width: 24%;
+  height: 25px;
+  opacity: 0.1;
+}
+
+#nived-contact-preview .nv-title {
+  font-size: clamp(32px, 5.8vw, 46px);
+  line-height: 1.07;
+  letter-spacing: -1.8px;
+  font-weight: 750;
+  margin: 0 0 38px;
+  color: var(--nv-ink);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#nived-contact-preview .nv-nav {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  gap: 8px;
+  margin: 0 0 48px;
+}
+
+#nived-contact-preview button,
+#nived-contact-preview input,
+#nived-contact-preview textarea {
+  font: inherit;
+}
+
+#nived-contact-preview .nv-tab {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  border: 1px solid var(--nv-line);
+  padding: 15px 14px;
+  background: transparent;
+  color: var(--nv-ink);
+  text-align: left;
+  font-size: 12px;
+  letter-spacing: 1px;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+}
+
+#nived-contact-preview .nv-tab:focus-visible {
+  outline: 2px solid var(--nv-blue);
+  outline-offset: 2px;
+}
+
+#nived-contact-preview .nv-tab[aria-selected="true"] {
+  background: var(--nv-blue);
+  border-color: var(--nv-blue);
+  color: #ffffff;
+}
+
+#nived-contact-preview .nv-tab:hover:not([aria-selected="true"]) {
+  background: color-mix(in srgb, var(--nv-blue) 30%, var(--nv-bg));
+}
+
+#nived-contact-preview .nv-tab[aria-selected="true"]:hover {
+  background: var(--nv-blue);
+}
+
+#nived-contact-preview .nv-tab .nv-arrow {
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+#nived-contact-preview .nv-mark {
+  margin: auto 0 4px;
+  align-self: flex-end;
+  font-size: 52px;
+  line-height: 1;
+  font-weight: 750;
+  letter-spacing: -3px;
+  text-decoration: line-through;
+  text-decoration-thickness: 3px;
+  position: relative;
+  color: var(--nv-ink);
+}
+
+#nived-contact-preview .nv-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 28px;
+  width: 66%;
+  background: var(--nv-blue);
+  opacity: 0.19;
+  z-index: -1;
+  pointer-events: none;
+}
+
+#nived-contact-preview .nv-bottom:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 105px;
+  width: 34px;
+  background: var(--nv-blue);
+  opacity: 1;
+}
+
+#nived-contact-preview .nv-right {
+  padding: 37px 30px 26px;
+  background: var(--nv-panel);
+  border-top: 1px solid #1c1d25;
+  border-bottom: 1px solid #1c1d25;
+  border-left: 1px solid #1c1d25;
+  display: flex;
+  flex-direction: column;
+}
+
+#nived-contact-preview .nv-eyebrow {
+  font-size: 11px;
+  letter-spacing: 1.8px;
+  color: var(--nv-muted);
+  margin: 0 0 33px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
+}
+
+#nived-contact-preview .nv-dot {
+  width: 6px;
+  height: 6px;
+  display: inline-block;
+  background: var(--nv-blue);
+}
+
+#nived-contact-preview .nv-heading {
+  font-size: 28px;
+  letter-spacing: -0.8px;
+  line-height: 1.1;
+  margin: 0 0 13px;
+  font-weight: 700;
+  color: var(--nv-ink);
+}
+
+#nived-contact-preview .nv-copy {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--nv-muted);
+  max-width: 29ch;
+  margin: 0 0 28px;
+}
+
+#nived-contact-preview .nv-social {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 17px 0;
+  border: 0;
+  border-bottom: 1px solid var(--nv-line);
+  color: var(--nv-ink);
+  background: transparent;
+  text-align: left;
+  font-size: 18px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#nived-contact-preview .nv-social:hover {
+  color: #728cff;
+}
+
+#nived-contact-preview .nv-social span:last-child {
+  color: var(--nv-muted);
+  font-size: 22px;
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+
+#nived-contact-preview .nv-social:hover span:last-child {
+  transform: translate(2px, -2px);
+  color: #728cff;
+}
+
+#nived-contact-preview .nv-form {
+  display: grid;
+  gap: 17px;
+}
+
+#nived-contact-preview .nv-field {
+  display: grid;
+  gap: 8px;
+  font-size: 11px;
+  letter-spacing: 0.8px;
+  color: var(--nv-muted);
+  font-weight: 600;
+}
+
+#nived-contact-preview input,
+#nived-contact-preview textarea {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  border-bottom: 1px solid #454754;
+  border-radius: 0;
+  background: transparent;
+  color: var(--nv-ink);
+  padding: 7px 0 11px;
+  font-size: 16px;
+  letter-spacing: 0;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+#nived-contact-preview input:focus,
+#nived-contact-preview textarea:focus {
+  border-bottom-color: var(--nv-blue);
+}
+
+#nived-contact-preview input::placeholder,
+#nived-contact-preview textarea::placeholder {
+  color: #747784;
+}
+
+#nived-contact-preview textarea {
+  resize: vertical;
+  min-height: 74px;
+}
+
+#nived-contact-preview .nv-submit {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--nv-blue);
+  border: 0;
+  color: var(--nv-ink);
+  padding: 15px 17px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-top: 2px;
+  min-height: 46px;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+#nived-contact-preview .nv-submit:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+#nived-contact-preview .nv-submit:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+#nived-contact-preview .nv-fine {
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--nv-muted);
+  margin: 0;
+}
+
+#nived-contact-preview .nv-status {
+  font-size: 12px;
+  color: var(--nv-muted);
+  line-height: 1.5;
+  margin: 17px 0 0;
+}
+
+#nived-contact-preview .nv-status.success {
+  color: #34d399;
+}
+
+#nived-contact-preview .nv-status.error {
+  color: #f87171;
+}
+
+#nived-contact-preview [hidden] {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .nv-contact-section {
+    padding: 48px 16px;
+  }
+  #nived-contact-preview .nv-shell {
+    grid-template-columns: 1fr;
+    border-radius: 16px;
+  }
+  #nived-contact-preview .nv-left {
+    min-height: auto;
+    padding: 28px 22px 24px;
+  }
+  #nived-contact-preview .nv-title {
+    font-size: 38px;
+    margin-bottom: 24px;
+  }
+  #nived-contact-preview .nv-nav {
+    margin-bottom: 28px;
+    gap: 7px;
+  }
+  #nived-contact-preview .nv-tab {
+    padding: 13px;
+  }
+  #nived-contact-preview .nv-mark {
+    font-size: 42px;
+    margin-top: 16px;
+  }
+  #nived-contact-preview .nv-right {
+    padding: 30px 22px 32px;
+    border-left: 0;
+  }
+  #nived-contact-preview .nv-eyebrow {
+    margin-bottom: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  #nived-contact-preview button,
+  #nived-contact-preview a {
+    transition: background 0.15s, color 0.15s, border-color 0.15s, opacity 0.15s;
+  }
+}

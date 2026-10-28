@@ -1,0 +1,18 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Oceon Pink">
+<path id="Vector" d="M46 0H14C6.26801 0 0 6.26801 0 14V46C0 53.732 6.26801 60 14 60H46C53.732 60 60 53.732 60 46V14C60 6.26801 53.732 0 46 0Z" fill="#FCE7F3"/>
+<path id="Vector_2" opacity="0.4" d="M6.99951 53.8754C10.9995 36.6254 19.4995 19.8754 26.4995 19.8754C33.4995 19.8754 35.9995 38.8754 41.9995 38.8754C46.9995 38.8754 48.9995 17.8754 51.9995 9.87539" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke="white"/>
+<path id="Vector_3" d="M6.99951 53.5004C10.9995 36.2504 19.4995 19.5004 26.4995 19.5004C33.4995 19.5004 35.9995 38.5004 41.9995 38.5004C46.9995 38.5004 48.9995 17.5004 51.9995 9.50039" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke="#4A1D2E"/>
+<path id="Vector_4" d="M52.0005 13.75C54.3477 13.75 56.2505 11.8472 56.2505 9.5C56.2505 7.15279 54.3477 5.25 52.0005 5.25C49.6533 5.25 47.7505 7.15279 47.7505 9.5C47.7505 11.8472 49.6533 13.75 52.0005 13.75Z" fill="url(#paint0_linear_403_1176)"/>
+<path id="Vector_5" d="M51.9995 12.1254C53.4493 12.1254 54.6245 10.9501 54.6245 9.50039C54.6245 8.05064 53.4493 6.87539 51.9995 6.87539C50.5498 6.87539 49.3745 8.05064 49.3745 9.50039C49.3745 10.9501 50.5498 12.1254 51.9995 12.1254Z" fill="#171922"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_403_1176" x1="47.7505" y1="5.25" x2="56.2505" y2="13.75" gradientUnits="userSpaceOnUse">
+<stop stop-color="white"/>
+<stop offset="0.25" stop-color="#E2E8F0"/>
+<stop offset="0.5" stop-color="#94A3B8"/>
+<stop offset="0.75" stop-color="#CBD5E1"/>
+<stop offset="1" stop-color="#475569"/>
+</linearGradient>
+</defs>
+</svg>
